@@ -10,19 +10,41 @@
             echo $_SESSION['add']; //hien thi thong bao
             unset($_SESSION['add']); //xoa bo thong bao
         }
+
+        if(isset($_SESSION['delete']))
+        {
+            echo $_SESSION['delete']; //hien thi thong bao
+            unset($_SESSION['delete']); //xoa bo thong bao
+        }
+        if(isset($_SESSION['update'])){
+            echo $_SESSION['update'];
+            unset($_SESSION['update']);
+        }
+        if(isset($_SESSION['user-not-found'])){
+            echo $_SESSION['user-not-found'];
+            unset($_SESSION['user-not-found']);
+        }
+        if(isset($_SESSION['pwd-not-match'])){
+            echo $_SESSION['pwd-not-match'];
+            unset($_SESSION['pwd-not-match']);
+        }
+        if(isset($_SESSION['change-pwd'])){
+            echo $_SESSION['change-pwd'];
+            unset($_SESSION['change-pwd']);
+        }
         ?>
         <br><br><br>
         <!-- Button for adding admin -->
         <a href="add-admin.php" class="btn-primary">Add Admin</a>
         <br /><br /><br />
+        <form enctype="multipart/form-data">
 
         <table class="tbl-full">
             <tr>
                 <th>STT</th>
+                <th>Ảnh</th>
                 <th>Họ tên</th>
-                <th>Địa chỉ</th>
                 <th>Số điện thoại</th>
-                <th>CMND</th>
                 <th>Giới tính</th>
                 <th>Email</th>
                 <th>Actions</th>
@@ -56,30 +78,31 @@
 
                         <tr>
                             <td><?php echo $sn++; ?> </td>
+                            <td><img src="<?php if(isset($anh)) echo $anh; ?>"><?php if(isset($anh)) echo $anh; ?></td>
                             <td><?php echo $ten; ?></td>
-                            <td><?php echo $diachi; ?></td>
                             <td><?php echo $sdt; ?></td>
-                            <td><?php echo $cmnd; ?></td>
                             <td><?php if($gioitinh==0) echo "Nam";
                             else echo "Nu"; ?></td>
                             <td><?php echo $email; ?></td>
                             <td>
-                                <a href="#" class="btn-secondary">Update</a>
-                                <a href="#" class="btn-danger">Delete</a>
+                                <a href="<?php echo SITEURL; ?>admin/update-password.php?id=<?php echo $id; ?>" class="btn-primary">Đổi mật khẩu</a>
+                                <a href="<?php echo SITEURL; ?>admin/update-admin.php?id=<?php echo $id; ?>" class="btn-secondary">Sửa thông tin</a>
+                                <a href="<?php echo SITEURL; ?>admin/delete-admin.php?id=<?php echo $id; ?>" class="btn-danger">Xóa thủ thư</a>
                             </td>
                         </tr>
 
             <?php
-
-
                     }
+                }
+                else {
+                    //khong co du lieu
                 }
             }
             ?>
 
 
         </table>
-
+        </form>
     </div>
 </div>
 <!-- Main content section ends -->

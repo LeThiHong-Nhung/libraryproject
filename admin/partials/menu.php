@@ -1,4 +1,11 @@
-<?php include('../config/constants.php'); ?>
+<?php
+
+    include('../config/constants.php'); 
+    include('login-check.php');
+?>
+
+
+
 <!DOCTYPE html>
 <head>
     <title>Thư viện - Trang chủ</title>
@@ -17,6 +24,7 @@
                 <li><a href="baitap-form.php">FORM</a></li>
                 <li><a href="baitap-array.php">ARRAY</a></li>
                 <li><a href="baitap-sql.php">SQL</a></li>
+                <li><a href="logout.php">ĐĂNG XUẤT</a></li>
             </ul>
         </div>
     </div>

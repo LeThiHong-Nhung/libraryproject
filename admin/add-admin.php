@@ -55,6 +55,12 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>Mật khẩu</td>
+                    <td>
+                        <input type="password" name="pwd" placeholder="Nhập mật khẩu">
+                    </td>
+                </tr>
+                <tr>
                     <td>Ảnh</td>
                     <td>
                         <input type="file" name="anh_nv">
@@ -85,8 +91,10 @@ if (isset($_POST['submit'])) {
     $cmnd = $_POST['cmnd_nv'];
     $gioitinh = $_POST['gioitinh_nv'];
     $diachi = $_POST['diachi_nv'];
-    $anh = $_FILES['anh_nv']['name'];
-    $upload = "uploads/" . $anh;
+    $pwd= md5($_POST['pwd']);
+    $anhh = $_FILES['anh_nv']['name'];
+    $anh = "images/".$anhh;
+    move_uploaded_file($anhh,$anh);
 
     //cau truy van
     $sql = "INSERT INTO nhan_vien SET
@@ -96,13 +104,14 @@ if (isset($_POST['submit'])) {
     sdt_nv='$sdt',
     email_nv='$email',
     cmnd_nv='$cmnd',
+    pwd='$pwd',
     gioitinh_nv='$gioitinh',
     anh_nv='$anh' 
     ";
     //Thư mục bạn sẽ lưu file upload
-    $target_dir    = "uploads/";
+    $target_dir    = "images/";
     //Vị trí file lưu tạm trong server (file sẽ lưu trong uploads, với tên giống tên ban đầu)
-    $target_file   = $target_dir . basename($_FILES["anh_nv"]["name"]);
+    $target_file   = $target_dir.basename($_FILES["anh_nv"]["name"]);
 
     $allowUpload   = true;
 
@@ -126,7 +135,7 @@ if (isset($_POST['submit'])) {
         //insert thanh cong
         //echo "insert thanh cong";
         //tao session de hien thi thong bao
-        $_SESSION['add'] = "Admin is added successfully!";
+        $_SESSION['add'] = "<div class='success'>Admin is added successfully!</div>";
         //chuyen trang toi manage admin
         header("location:".SITEURL.'admin/manage-admin.php');
     }
@@ -134,7 +143,7 @@ if (isset($_POST['submit'])) {
         //insert khong thanh cong
         //echo "insert khong thanh cong";
         //tao session de hien thi thong bao
-        $_SESSION['add'] = "Admin is added failed!";
+        $_SESSION['add'] = "<div class='error'>Admin is added failed!</div>";
         //chuyen trang toi manage admin
         header("location:".SITEURL.'admin/add-admin.php');
     }

@@ -183,6 +183,12 @@ if (isset($_POST['submit'])) {
         //tai anh lên
         //ten, nguon, dich
         $tenanh=$_FILES['anh_sach']['name'];
+
+        //upload anh khi anh khong duoc chon
+        if($tenanh!="")
+        {
+
+
         //auto rename file
         //lay duoi file
         $ext = explode('.',$tenanh);
@@ -202,6 +208,7 @@ if (isset($_POST['submit'])) {
             header('location:'.SITEURL.'admin/add-book.php');
             die();
         }
+    }
     }
     else{
         //khong tai anh va gan gia tri la ''

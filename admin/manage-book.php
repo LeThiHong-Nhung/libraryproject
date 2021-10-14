@@ -9,6 +9,26 @@
             echo $_SESSION['add']; //hien thi thong bao
             unset($_SESSION['add']); //xoa bo thong bao
         }
+        if(isset($_SESSION['remove']))
+        {
+            echo $_SESSION['remove'];
+            unset($_SESSION['remove']);
+        }
+        if(isset($_SESSION['delete']))
+        {
+            echo $_SESSION['delete'];
+            unset($_SESSION['delete']);
+        }
+        if(isset($_SESSION['no-book-found']))
+        {
+            echo $_SESSION['no-book-found'];
+            unset($_SESSION['no-book-found']);
+        }
+        if(isset($_SESSION['update']))
+        {
+            echo $_SESSION['update'];
+            unset($_SESSION['update']);
+        }
         ?>
         <br>
         <!-- Button for adding book -->
@@ -82,8 +102,8 @@
                             <td><?php echo $gia_sach; ?></td>
                             <td><?php echo $soluong; ?></td>
                             <td>
-                                <a href="#" class="btn-secondary">Update</a>
-                                <a href="#" class="btn-danger">Delete</a>
+                                <a href="<?php echo SITEURL; ?>admin/update-book.php?id=<?php echo $idsach; ?>" class="btn-secondary">Update</a>
+                                <a href="<?php echo SITEURL; ?>admin/delete-book.php?id=<?php echo $idsach; ?>&tenanh=<?php echo $tenanh; ?>" class="btn-danger">Delete</a>
                             </td>
                         </tr>
 

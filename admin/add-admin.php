@@ -8,6 +8,10 @@
             echo $_SESSION['add'];//hien thi thong bao
             unset($_SESSION['add']);//xoa bo thong bao
         }
+        if (isset($_SESSION['upload'])) {
+            echo $_SESSION['upload'];//hien thi thong bao
+            unset($_SESSION['upload']);//xoa bo thong bao
+        }
         ?>
         <form action="" method="post" enctype="multipart/form-data">
             <table class="tbl-30">
@@ -44,8 +48,8 @@
                 <tr>
                     <td>Giới tính</td>
                     <td>
-                        <input type="radio" name="gioitinh_nv" value="Nam" checked>Nam
-                        <input type="radio" name="gioitinh_nv" value="Nu">Nữ
+                        <input type="radio" name="gioitinh_nv" value="0">Nam
+                        <input type="radio" name="gioitinh_nv" value="1" checked>Nữ
                     </td>
                 </tr>
                 <tr>
@@ -92,9 +96,41 @@ if (isset($_POST['submit'])) {
     $gioitinh = $_POST['gioitinh_nv'];
     $diachi = $_POST['diachi_nv'];
     $pwd= md5($_POST['pwd']);
-    $anhh = $_FILES['anh_nv']['name'];
-    $anh = "images/".$anhh;
-    move_uploaded_file($anhh,$anh);
+
+
+    //kiem tra anh duoc chon chua
+    //print_r($_FILES['anh_nv']);
+
+    //die();//kiem tra va dung tai day
+    if(isset($_FILES['anh_nv']['name']))
+    {
+        //tai anh lên
+        //ten, nguon, dich
+        $tenanh=$_FILES['anh_nv']['name'];
+        //auto rename file
+        //lay duoi file
+        $ext = end(explode('.',$tenanh));
+
+        //doi ten file
+        $tenanh="Admin_".rand(000,999).'.'.$ext;
+
+        $source_path=$_FILES['anh_nv']['tmp_name'];
+        $destination_path="../images/nv/".$tenanh;
+        //upload image
+        $upload = move_uploaded_file($source_path,$destination_path);
+
+        //kiem tra anh da tai len hay chua
+        if($upload==false)
+        {
+            $_SESSION['upload']="<div class='error'>Uploaded images failed</div>";
+            header('location:'.SITEURL.'admin/add-admin.php');
+            die();
+        }
+    }
+    else{
+        //khong tai anh va gan gia tri la ''
+        $tenanh='';
+    }
 
     //cau truy van
     $sql = "INSERT INTO nhan_vien SET
@@ -106,26 +142,10 @@ if (isset($_POST['submit'])) {
     cmnd_nv='$cmnd',
     pwd='$pwd',
     gioitinh_nv='$gioitinh',
-    anh_nv='$anh' 
+    anh_nv='$tenanh'  
     ";
-    //Thư mục bạn sẽ lưu file upload
-    $target_dir    = "images/";
-    //Vị trí file lưu tạm trong server (file sẽ lưu trong uploads, với tên giống tên ban đầu)
-    $target_file   = $target_dir.basename($_FILES["anh_nv"]["name"]);
-
-    $allowUpload   = true;
-
-    //Lấy phần mở rộng của file (jpg, png, ...)
-    $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-
-    // Cỡ lớn nhất được upload (bytes)
-    $maxfilesize   = 800000;
-
-    ////Những loại file được phép upload
-    $allowtypes    = array('jpg', 'png', 'jpeg', 'gif');
-    // Xử lý di chuyển file tạm ra thư mục cần lưu trữ, dùng hàm move_uploaded_file
-    move_uploaded_file($_FILES["anh_nv"]["name"], $target_file);
-
+    
+    
 
     //thuc thi cau truy van
     $res = mysqli_query($conn,$sql) or die(mysqli_error($conn));

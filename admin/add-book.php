@@ -1,15 +1,18 @@
-<?php include('partials/menu.php'); ?>
-
+<?php include('partials/menu.php') ?>
 <div class="main-content">
     <div class="wrapper">
         <h1>Add Book</h1>
-        <br /><br />
+        <br>
         <?php if (isset($_SESSION['add'])) {
             echo $_SESSION['add']; //hien thi thong bao
             unset($_SESSION['add']); //xoa bo thong bao
         }
-        ?>
-        <form action="" method="post" enctype="multipart/form-data">
+        if (isset($_SESSION['upload'])) {
+            echo $_SESSION['upload'];//hien thi thong bao
+            unset($_SESSION['upload']);//xoa bo thong bao
+        }
+        ?><br>
+        <form action="" method="POST" enctype="multipart/form-data">
             <table class="tbl-30">
                 <tr>
                     <td>Mã sách</td>
@@ -50,19 +53,79 @@
                 <tr>
                     <td>Mã nhà xuất bản</td>
                     <td>
-                        <input type="text" name="ma_nxb" placeholder="Nhập mã nxb">
+                        <select name="ma_nxb">
+                            <?php 
+                    $sql2 ="SELECT * FROM nha_xuat_ban";
+                    $res = mysqli_query($conn, $sql2);
+                    if($res == true)
+                    {
+                    $count = mysqli_num_rows($res);
+                    if($count >=1)
+                    {
+                        while($row = mysqli_fetch_array($res))
+                        {
+                            $ma = $row['ma_nxb'];
+                            $ten = $row['ten_nxb'];
+                            echo "<option value='$ma'>";
+                            echo $ten;
+                            echo "</option>";
+                        }
+                    }
+                    }
+                    ?>
+                        </select>
                     </td>
                 </tr>
                 <tr>
                     <td>Mã thể loại</td>
                     <td>
-                        <input type="text" name="ma_tl" placeholder="Nhập mã nxb">
+                        <select name="ma_tl">
+                            <?php 
+                    $sql2 ="SELECT * FROM the_loai";
+                    $res = mysqli_query($conn, $sql2);
+                    if($res == true)
+                    {
+                    $count = mysqli_num_rows($res);
+                    if($count >=1)
+                    {
+                        while($row = mysqli_fetch_array($res))
+                        {
+                            $ma = $row['ma_tl'];
+                            $ten = $row['ten_tl'];
+                            echo "<option value='$ma'>";
+                            echo $ten;
+                            echo "</option>";
+                        }
+                    }
+                    }
+                    ?>
+                        </select>
                     </td>
                 </tr>
                 <tr>
                     <td>Mã tác giả</td>
                     <td>
-                        <input type="text" name="ma_tg" placeholder="Nhập mã nxb">
+                        <select name="ma_tg">
+                            <?php 
+                    $sql2 ="SELECT * FROM tac_gia";
+                    $res = mysqli_query($conn, $sql2);
+                    if($res == true)
+                    {
+                    $count = mysqli_num_rows($res);
+                    if($count >=1)
+                    {
+                        while($row = mysqli_fetch_array($res))
+                        {
+                            $ma = $row['ma_tg'];
+                            $ten = $row['ten_tg'];
+                            echo "<option value='$ma'>";
+                            echo $ten;
+                            echo "</option>";
+                        }
+                    }
+                    }
+                    ?>
+                        </select>
                     </td>
                 </tr>
                 <tr>
@@ -91,14 +154,11 @@
             </table>
         </form>
     </div>
+
 </div>
-
-
-<?php include('partials/footer.php'); ?>
-
+<?php include('partials/footer.php') ?>
 <?php
 //Luu vao csdl
-
 //kiem tra nut submit
 if (isset($_POST['submit'])) {
     $idsach = $_POST['ma_sach'];
@@ -112,10 +172,41 @@ if (isset($_POST['submit'])) {
     $ma_tg = $_POST['ma_tg'];
     $tinhtrang = $_POST['tinhtrang'];
     $tomtat = $_POST['tomtat'];
-    $anh_sach = $_FILES['anh_sach']['name'];
-    $upload = "uploads/" . $anh_sach;
+    $tenanh='';
+    
+    //kiem tra anh duoc chon chua
+    //print_r($_FILES['anh_nv']);
 
+    //die();//kiem tra va dung tai day
+    if(isset($_FILES['anh_sach']['name']))
+    {
+        //tai anh lên
+        //ten, nguon, dich
+        $tenanh=$_FILES['anh_sach']['name'];
+        //auto rename file
+        //lay duoi file
+        $ext = explode('.',$tenanh);
+        $ext = end($ext);
 
+        //doi ten file
+        $tenanh="Book_".rand(000,999).'.'.$ext;
+
+        $source_path=$_FILES['anh_sach']['tmp_name'];
+        $destination_path="../images/book/".$tenanh;
+        //upload image
+        $upload = move_uploaded_file($source_path,$destination_path);
+        //kiem tra anh da tai len hay chua
+        if($upload==false)
+        {
+            $_SESSION['upload']="<div class='error'>Uploaded images failed</div>";
+            header('location:'.SITEURL.'admin/add-book.php');
+            die();
+        }
+    }
+    else{
+        //khong tai anh va gan gia tri la ''
+        $tenanh='';
+    }
     //cau truy van
     $sql = "INSERT INTO sach SET
     ma_sach='$idsach',
@@ -129,48 +220,25 @@ if (isset($_POST['submit'])) {
     ma_tg='$ma_tg',
     tinhtrang='$tinhtrang',
     tomtat='$tomtat',
-    anh_sach='$anh_sach' 
+    anh_sach='$tenanh' 
     ";
-    //Thư mục bạn sẽ lưu file upload
-    $target_dir    = "uploads/";
-    //Vị trí file lưu tạm trong server (file sẽ lưu trong uploads, với tên giống tên ban đầu)
-    $target_file   = $target_dir . basename($_FILES["anh_sach"]["name"]);
-
-    $allowUpload   = true;
-
-    //Lấy phần mở rộng của file (jpg, png, ...)
-    $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-
-    // Cỡ lớn nhất được upload (bytes)
-    $maxfilesize   = 800000;
-
-    ////Những loại file được phép upload
-    $allowtypes    = array('jpg', 'png', 'jpeg', 'gif');
-    // Xử lý di chuyển file tạm ra thư mục cần lưu trữ, dùng hàm move_uploaded_file
-    move_uploaded_file($_FILES["anh_sach"]["name"], $target_file);
-
-
     //thuc thi cau truy van
-    $res = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-
+    $res = mysqli_query($conn, $sql);
     //kiem tra ket qua cau truy van
     if ($res == true) {
         //insert thanh cong
         //echo "insert thanh cong";
         //tao session de hien thi thong bao
-        $_SESSION['add'] = "Book is added successfully!";
-        //chuyen trang toi manage admin
-        header("location:".SITEURL.'admin/manage-book.php');
-    } else {
+        $_SESSION['add'] = "<div class='success'>Book is added successfully!</div>";
+        header('location:'.SITEURL.'admin/manage-book.php');
+        }
+        else{
         //insert khong thanh cong
         //echo "insert khong thanh cong";
         //tao session de hien thi thong bao
-        $_SESSION['add'] = "Book is added failed!";
-        //chuyen trang toi manage admin
+        $_SESSION['add'] = "<div class='error'>Book is added failed!</div>";
+        //chuyen trang toi manage admin 
         header("location:".SITEURL.'admin/add-book.php');
     }
 }
-
-
-
 ?>

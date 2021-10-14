@@ -37,7 +37,7 @@
         <!-- Button for adding admin -->
         <a href="add-admin.php" class="btn-primary">Add Admin</a>
         <br /><br /><br />
-        <form enctype="multipart/form-data">
+        <form enctype="multipart/form-data" method="POST" action="">
 
         <table class="tbl-full">
             <tr>
@@ -70,7 +70,7 @@
                         $sdt = $rows['sdt_nv'];
                         $cmnd = $rows['cmnd_nv'];
                         $gioitinh = $rows['gioitinh_nv'];
-                        $anh = $rows['anh_nv'];
+                        $tenanh = $rows['anh_nv'];
                         $email = $rows['email_nv'];
 
                         //hien thi du lieu
@@ -78,11 +78,30 @@
 
                         <tr>
                             <td><?php echo $sn++; ?> </td>
-                            <td><img src="<?php if(isset($anh)) echo $anh; ?>"><?php if(isset($anh)) echo $anh; ?></td>
+                            <td>
+
+                                <?php
+                                //kiem tra co anh hay khong
+                                if($tenanh!=""){
+                                    //hien thi anh
+                                    ?> 
+
+                                    <img src="<?php echo SITEURL; ?>images/nv/<?php echo $tenanh; ?>" width="100px">
+
+                                    <?php 
+
+                                }
+                                else{
+                                    //hien thong bao
+                                    echo "<div class='error'>Không có ảnh</div>";
+                                }
+                                ?>
+
+                            </td>
                             <td><?php echo $ten; ?></td>
                             <td><?php echo $sdt; ?></td>
                             <td><?php if($gioitinh==0) echo "Nam";
-                            else echo "Nu"; ?></td>
+                            else echo "Nữ"; ?></td>
                             <td><?php echo $email; ?></td>
                             <td>
                                 <a href="<?php echo SITEURL; ?>admin/update-password.php?id=<?php echo $id; ?>" class="btn-primary">Đổi mật khẩu</a>

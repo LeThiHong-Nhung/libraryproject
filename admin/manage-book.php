@@ -4,19 +4,21 @@
 <div class="main-content">
     <div class="wrapper">
         <h1>Manage Books</h1>
-        <br />
+        <br><br>
         <?php if (isset($_SESSION['add'])) {
             echo $_SESSION['add']; //hien thi thong bao
             unset($_SESSION['add']); //xoa bo thong bao
         }
         ?>
-        <!-- Button for adding admin -->
-        <a href="add-book.php" class="btn-primary">Add Book</a>
+        <br>
+        <!-- Button for adding book -->
+        <a href="<?php echo SITEURL; ?>admin/add-book.php" class="btn-primary">Add Book</a>
         <br /><br /><br />
 
         <table class="tbl-full">
             <tr>
                 <th>STT</th>
+                <th>Ảnh sách</th>
                 <th>Tên sách</th>
                 <th>Năm XB</th>
                 <th>Giá sách</th>
@@ -49,12 +51,32 @@
                         $ma_tg = $rows['ma_tg'];
                         $tinhtrang = $rows['tinhtrang'];
                         $tomtat = $rows['tomtat'];
+                        $tenanh = $rows['anh_sach'];
 
                         //hien thi du lieu
             ?>
 
                         <tr>
                             <td><?php echo $sn++; ?> </td>
+                            <td>
+                            <?php
+                                //kiem tra co anh hay khong
+                                if($tenanh!=""){
+                                    //hien thi anh
+                                    ?> 
+
+                                    <img src="<?php echo SITEURL; ?>images/book/<?php echo $tenanh; ?>" width="100px">
+
+                                    <?php 
+
+                                }
+                                else{
+                                    //hien thong bao
+                                    echo "<div class='error'>Không có ảnh</div>";
+                                }
+                                ?>
+
+                            </td>
                             <td><?php echo $ten_sach; ?></td>
                             <td><?php echo $namxb; ?></td>
                             <td><?php echo $gia_sach; ?></td>

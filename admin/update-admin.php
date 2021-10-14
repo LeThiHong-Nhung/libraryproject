@@ -68,8 +68,8 @@
                 <tr>
                     <td>Giới tính</td>
                     <td>
-                        <input type="radio" name="gioitinh_nv" value="Nam" checked>Nam
-                        <input type="radio" name="gioitinh_nv" value="Nu" checked>Nữ
+                        <input type="radio" name="gioitinh_nv" value="0" checked>Nam
+                        <input type="radio" name="gioitinh_nv" value="1" checked>Nữ
                     </td>
                 </tr>
                 <tr>
@@ -107,8 +107,32 @@ if(isset($_POST['submit']))
     $cmnd = $_POST['cmnd_nv'];
     $gioitinh = $_POST['gioitinh_nv'];
     $diachi = $_POST['diachi_nv'];
-    $anhh = $_FILES['anh_nv']['name'];
-    $anh = "images/".$anhh;
+    if(isset($_FILES['anh_nv']['name']))
+    {
+        //tai anh lên
+        //ten, nguon, dich
+        $tenanh=$_FILES['anh_nv']['name'];
+        //auto rename file
+        //lay duoi file
+        $ext = end(explode('.',$tenanh));
+
+        //doi ten file
+        $tenanh="Book_".rand(000,999).'.'.$ext;
+
+        $source_path=$_FILES['anh_nv']['tmp_name'];
+        $destination_path="../images/nv/".$tenanh;
+        //upload image
+        $upload = move_uploaded_file($source_path,$destination_path);
+
+        //kiem tra anh da tai len hay chua
+        if($upload==false)
+        {
+            $_SESSION['upload']="<div class='error'>Uploaded images successfully</div>";
+            header('location:'.SITEURL.'admin/add-admin.php');
+            die();
+        }
+    }
+    
 
     //chuan bi cau truy van
     $sql = "UPDATE nhan_vien SET
@@ -118,7 +142,7 @@ if(isset($_POST['submit']))
     email_nv='$email',
     cmnd_nv='$cmnd',
     gioitinh_nv='$gioitinh',
-    anh_nv='$anh' 
+    anh_nv='$tenanh' 
     WHERE ma_nv='$id' 
     ";
     //thuc thi cau truy van

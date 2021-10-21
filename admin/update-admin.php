@@ -98,7 +98,7 @@
 <?php
 if(isset($_POST['submit']))
 {
-    echo "Button clicked";
+    //echo "Button clicked";
     //lay thong tin de update
     $id = $_POST['id'];
     $ten = $_POST['hoten_nv'];

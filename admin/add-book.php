@@ -1,4 +1,4 @@
-<?php include('partials/menu.php') ?>
+<?php ob_start(); include('partials/menu.php') ?>
 <div class="main-content">
     <div class="wrapper">
         <h1>Add Book</h1>
@@ -229,14 +229,10 @@ if (isset($_POST['submit'])) {
     tomtat='$tomtat',
     anh_sach='$tenanh' 
     ";
-    //thuc thi cau truy van
     $res = mysqli_query($conn, $sql);
-    //kiem tra ket qua cau truy van
     if ($res == true) {
-        //insert thanh cong
-        //echo "insert thanh cong";
-        //tao session de hien thi thong bao
         $_SESSION['add'] = "<div class='success'>Book is added successfully!</div>";
+        echo "Thanh cong";
         header('location:'.SITEURL.'admin/manage-book.php');
         }
         else{
@@ -248,4 +244,5 @@ if (isset($_POST['submit'])) {
         header("location:".SITEURL.'admin/add-book.php');
     }
 }
+ob_end_flush();
 ?>

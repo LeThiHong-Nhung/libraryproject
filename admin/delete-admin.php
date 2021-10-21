@@ -7,7 +7,7 @@ include("../config/constants.php");
 $id = $_GET['id'];
 
 //2. chuan bi cau truy van xoa
-$sql = "DELETE FROM nhan_vien WHERE ma_nv=$id";
+$sql = "DELETE FROM nhan_vien WHERE ma_nv='$id' ";
 
 //thuc thi cau truy van
 $res = mysqli_query($conn, $sql);

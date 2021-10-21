@@ -29,10 +29,20 @@
             echo $_SESSION['update'];
             unset($_SESSION['update']);
         }
+        if(isset($_SESSION['upload']))
+        {
+            echo $_SESSION['upload'];
+            unset($_SESSION['upload']);
+        }
+        if(isset($_SESSION['failed-remove']))
+        {
+            echo $_SESSION['failed-remove'];
+            unset($_SESSION['failed-remove']);
+        }
         ?>
         <br>
         <!-- Button for adding book -->
-        <a href="<?php echo SITEURL; ?>admin/add-book.php" class="btn-primary">Add Book</a>
+        <a href="<?php echo SITEURL; ?>admin/add-book.php" class="btn-primary">THÊM SÁCH</a>
         <br /><br /><br />
 
         <table class="tbl-full">
@@ -102,8 +112,8 @@
                             <td><?php echo $gia_sach; ?></td>
                             <td><?php echo $soluong; ?></td>
                             <td>
-                                <a href="<?php echo SITEURL; ?>admin/update-book.php?id=<?php echo $idsach; ?>" class="btn-secondary">Update</a>
-                                <a href="<?php echo SITEURL; ?>admin/delete-book.php?id=<?php echo $idsach; ?>&tenanh=<?php echo $tenanh; ?>" class="btn-danger">Delete</a>
+                                <a href="<?php echo SITEURL; ?>admin/update-book.php?id=<?php echo $idsach; ?>"><img src="<?php echo SITEURL; ?>images/edit.png" width="50px" title="Sửa thông tin sách"></a>
+                                <a href="<?php echo SITEURL; ?>admin/delete-book.php?id=<?php echo $idsach; ?>&tenanh=<?php echo $tenanh; ?>"><img src="<?php echo SITEURL; ?>images/delete.png" width="50px" title="Xóa sách"></a>
                             </td>
                         </tr>
 

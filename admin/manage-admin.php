@@ -35,7 +35,7 @@
         ?>
         <br><br><br>
         <!-- Button for adding admin -->
-        <a href="add-admin.php" class="btn-primary">Add Admin</a>
+        <a href="add-admin.php" class="btn-primary">THÊM THỦ THƯ</a>
         <br /><br /><br />
         <form enctype="multipart/form-data" method="POST" action="">
 
@@ -104,9 +104,9 @@
                             else echo "Nữ"; ?></td>
                             <td><?php echo $email; ?></td>
                             <td>
-                                <a href="<?php echo SITEURL; ?>admin/update-password.php?id=<?php echo $id; ?>" class="btn-primary">Đổi mật khẩu</a>
-                                <a href="<?php echo SITEURL; ?>admin/update-admin.php?id=<?php echo $id; ?>" class="btn-secondary">Sửa thông tin</a>
-                                <a href="<?php echo SITEURL; ?>admin/delete-admin.php?id=<?php echo $id; ?>" class="btn-danger">Xóa thủ thư</a>
+                                <a href="<?php echo SITEURL; ?>admin/update-password.php?id=<?php echo $id; ?>" ><img src="<?php echo SITEURL; ?>images/pwd.png" width="50px" title="Đổi mật khẩu"></a>
+                                <a href="<?php echo SITEURL; ?>admin/update-admin.php?id=<?php echo $id; ?>"><img src="<?php echo SITEURL; ?>images/edit.png" width="50px" title="Sửa thông tin"></a>
+                                <a href="<?php echo SITEURL; ?>admin/delete-admin.php?id=<?php echo $id; ?>"><img src="<?php echo SITEURL; ?>images/delete.png" width="50px" title="Xóa thủ thư"></a>
                             </td>
                         </tr>
 

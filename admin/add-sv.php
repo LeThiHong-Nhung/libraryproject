@@ -109,14 +109,14 @@ if (isset($_POST['submit'])) {
         //insert thanh cong
         //echo "insert thanh cong";
         //tao session de hien thi thong bao
-        $_SESSION['add'] = "Student is added successfully!";
+        $_SESSION['add'] = "<div class='success'>Student is added successfully!</div>";
         //chuyen trang toi manage admin
         header("location:".SITEURL.'admin/manage-sv.php');
     } else {
         //insert khong thanh cong
         //echo "insert khong thanh cong";
         //tao session de hien thi thong bao
-        $_SESSION['add'] = "Student is added failed!";
+        $_SESSION['add'] = "<div class='error'>Student is added failed!</div>";
         //chuyen trang toi manage admin
         header("location:".SITEURL.'admin/add-sv.php');
     }

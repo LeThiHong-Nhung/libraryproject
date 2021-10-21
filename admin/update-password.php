@@ -52,7 +52,7 @@ if(isset($_POST['submit']))
     $res = mysqli_query($conn, $sql);
 
     //var_dump($res);
-    var_dump($sql);
+    //var_dump($sql);
 
     if($res == true)
     {
@@ -67,7 +67,7 @@ if(isset($_POST['submit']))
                 //echo "Password match";
                 $sql2 = "UPDATE nhan_vien SET 
                 pwd='$new_password'
-                WHERE ma_nv=$id 
+                WHERE ma_nv='$id'  
                 ";
 
                 $res2 = mysqli_query($conn,$sql2);

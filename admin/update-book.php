@@ -1,4 +1,4 @@
-<?php include('partials/menu.php') ?>
+<?php ob_start(); include('partials/menu.php') ?>
 <div class="main-content">
     <div class="wrapper">
         <h1>Update Book</h1>
@@ -10,11 +10,11 @@
             //lay id va dl
             $id=$_GET['id'];
             //lay dl
-            $sql = "SELECT * FROM sach WHERE ma_sach=$id";
+            $sql = "SELECT * FROM sach WHERE ma_sach='$id' ";
             //thuc thi cau truy van
             $res = mysqli_query($conn,$sql);
             $count = mysqli_num_rows($res);
-            if($count ==1)
+            if($count>0)
             {
                 //lay dl
                 $row = mysqli_fetch_assoc($res);
@@ -48,7 +48,7 @@
             <tr>
                 <td>Mã sách</td>
                 <td>
-                    <input type="text" readonly name="ma_sach" value="<?php echo $idsach; ?>">
+                    <input type="text" name="ma_sach" value="<?php echo $idsach; ?>">
                 </td>
             </tr>
             <tr>
@@ -84,19 +84,79 @@
             <tr>
                 <td>Nhà xuất bản</td>
                 <td>
-                    <input type="text" name="ma_nxb" value="<?php echo $ma_nxb; ?>">
-                </td>
+                    <select name="ma_nxb">
+                    <?php 
+                    $sql2 ="SELECT * FROM nha_xuat_ban";
+                    $res = mysqli_query($conn, $sql2);
+                    if($res == true)
+                    {
+                    $count = mysqli_num_rows($res);
+                    if($count >=1)
+                    {   
+                        while($row = mysqli_fetch_array($res))
+                        {
+                            $ma = $row['ma_nxb'];
+                            $ten = $row['ten_nxb'];
+                            echo "<option value='$ma' <?php if($ma_nxb==$ma) echo selected ?> >";
+                            echo $ten;
+                            echo "</option>";
+                        }
+                    }
+                    }
+                    ?>
+                    </select>
+                    </td>
             </tr>
             <tr>
                 <td>Thể loại</td>
                 <td>
-                    <input type="text" name="ma_tl" value="<?php echo $ma_tl; ?>">
-                </td>
+                    <select name="ma_tl">
+                    <?php 
+                    $sql2 ="SELECT * FROM the_loai";
+                    $res = mysqli_query($conn, $sql2);
+                    if($res == true)
+                    {
+                    $count = mysqli_num_rows($res);
+                    if($count >=1)
+                    {
+                        while($row = mysqli_fetch_array($res))
+                        {
+                            $ma = $row['ma_tl'];
+                            $ten = $row['ten_tl'];
+                            echo "<option value='$ma' <?php if($ma_tl==$ma) echo selected ?> >";
+                            echo $ten;
+                            echo "</option>";
+                        }
+                    }
+                    }
+                    ?>
+                    </select>
+                    </td>
             </tr>
             <tr>
                 <td>Tác giả</td>
                 <td>
-                    <input type="text" name="ma_tg" value="<?php echo $ma_tg; ?>">
+                <select name="ma_tg">
+                    <?php 
+                    $sql2 ="SELECT * FROM tac_gia";
+                    $res = mysqli_query($conn, $sql2);
+                    if($res == true)
+                    {
+                    $count = mysqli_num_rows($res);
+                    if($count >=1)
+                    {
+                        while($row = mysqli_fetch_array($res))
+                        {
+                            $ma = $row['ma_tg'];
+                            $ten = $row['ten_tg'];
+                            echo "<option value='$ma' <?php if($ma_tg==$ma) echo selected ?> >";
+                            echo $ten;
+                            echo "</option>";
+                        }
+                    }
+                    }
+                    ?>
+                </select>
                 </td>
             </tr>
             <tr>
@@ -159,10 +219,57 @@
             $ma_tg = $_POST['ma_tg'];
             $tinhtrang = $_POST['tinhtrang'];
             $tomtat = $_POST['tomtat'];
-            $tenanh=$_POST['anh_sach'];        
+            $anhhientai=$_POST['anh_sach'];
+                    
             
             //cap nhat anh neu chon anh moi
+            if(isset($_FILES['anh_moi']['name'])){
+                //echo $anhhientai;
+                //get detail
+                $tenanh=$_FILES['anh_moi']['name'];
+                if($tenanh!="")
+                {
+                    //co anh, tai anh len, xoa anh cu
+                    //auto rename file
+                    //lay duoi file
+                    $ext = explode('.',$tenanh);
+                    $ext = end($ext);
 
+                    //doi ten file
+                    $tenanh="Book_".rand(000,999).'.'.$ext;
+
+                    $source_path=$_FILES['anh_moi']['tmp_name'];
+                    $destination_path="../images/book/".$tenanh;
+                    //upload image
+                    $upload = move_uploaded_file($source_path,$destination_path);
+                    //kiem tra anh da tai len hay chua
+                    if($upload==false)
+                    {
+                        $_SESSION['upload']="<div class='error'>Uploaded images failed</div>";
+                        header('location:'.SITEURL.'admin/manage-book.php');
+                        die();
+                    }
+                    //xoa anh cu
+                    if($anhhientai!=""){
+                        $remove_path="../images/book/".$anhhientai;
+                        $remove=unlink($remove_path);
+                        //kiem tra anh cu da xoa hay chua, hien thong bao, stop
+                        if($remove==false){
+                            $_SESSION['failed-remove']="<div class='error'>Failed to remove current image</div>";
+                            header('location:'.SITEURL.'admin/manage-book.php');
+                            die();
+                        }
+                    }
+                    
+                }
+                else{
+                //khong co anh
+                $tenanh=$anhhientai;
+            }
+        }
+            else{
+                $tenanh=$anhhientai;
+            }
             //cap nhat vao db
             $sql2 = "UPDATE sach SET
             ten_sach='$ten_sach',
@@ -174,8 +281,9 @@
             ma_tl='$ma_tl',
             ma_tg='$ma_tg',
             tinhtrang='$tinhtrang',
+            anh_sach='$tenanh',
             tomtat='$tomtat' 
-            WHERE ma_sach=$idsach
+            WHERE ma_sach='$idsach' 
             ";
 
             //thuc thi
@@ -198,4 +306,4 @@
     </div>
 </div>
 
-<?php include('partials/footer.php') ?>
+<?php include('partials/footer.php'); ob_end_flush(); ?>

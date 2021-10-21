@@ -27,7 +27,7 @@
         }
         //xoa dl
         //chuan bi cau truy van xoa
-        $sql = "DELETE FROM sach WHERE ma_sach=$id";
+        $sql = "DELETE FROM sach WHERE ma_sach='$id' ";
 
         //thuc thi cau truy van
         $res = mysqli_query($conn,$sql);
@@ -41,6 +41,7 @@
         else{
             //thiet lap session thong bao that bai
             $_SESSION['delete']="<div class='error'>Delete failed</div>";
+            //var_dump($res);
             header('location:'.SITEURL.'admin/manage-book.php');
         }
     }

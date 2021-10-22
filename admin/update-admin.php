@@ -9,7 +9,7 @@
 
         //chuan bị cau truy van update admin
         //hien thi thong tin admin
-        $sql = "SELECT * FROM nhan_vien WHERE ma_nv=$id";
+        $sql = "SELECT * FROM nhan_vien WHERE ma_nv='$id' ";
 
         //thuc thi cau truy van
         $res = mysqli_query($conn, $sql);
@@ -28,7 +28,7 @@
                 $sdt = $rows['sdt_nv'];
                 $cmnd = $rows['cmnd_nv'];
                 $gioitinh = $rows['gioitinh_nv'];
-                $anh = $rows['anh_nv'];
+                $tenanh = $rows['anh_nv'];
                 $email = $rows['email_nv'];
             } else {
                 //chuyen ve trang manage
@@ -68,8 +68,8 @@
                 <tr>
                     <td>Giới tính</td>
                     <td>
-                        <input type="radio" name="gioitinh_nv" value="0" checked>Nam
-                        <input type="radio" name="gioitinh_nv" value="1" checked>Nữ
+                        <input type="radio" name="gioitinh_nv" value="0" <?php if($gioitinh==0) echo 'checked'; ?> >Nam
+                        <input type="radio" name="gioitinh_nv" value="1" <?php if($gioitinh==1) echo 'checked'; ?> >Nữ
                     </td>
                 </tr>
                 <tr>
@@ -79,13 +79,32 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Ảnh</td>
-                    <td>
-                        <input type="file" name="anh_nv"><b><?php if(isset($anh)) echo $anh; ?></b>
-                    </td>
-                </tr>
+                <td>Ảnh hiện tại</td>
+                <td>
+                <?php
+                    if($tenanh!="")
+                    {
+                        //hien thi anh
+                ?>
+                            <img src="<?php echo SITEURL; ?>images/nv/<?php echo $tenanh; ?>" width="150px">
+                <?php
+                    }
+                    else{
+                        //hien thong bao
+                        echo "<div class='error'>Image not added</div>";
+                    }
+                ?>
+                </td>
+            </tr>
+            <tr>
+                <td>Chọn ảnh</td>
+                <td>
+                    <input type="file" name="anh_moi" value="">
+                </td>
+            </tr>
                 <tr>
                     <td colspan="2">
+                        <input type="hidden" name="anh_nv" value="<?php echo $tenanh; ?>">
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <input type="submit" name="submit" value="Update Admin" class="btn-secondary">
                     </td>
@@ -107,30 +126,55 @@ if(isset($_POST['submit']))
     $cmnd = $_POST['cmnd_nv'];
     $gioitinh = $_POST['gioitinh_nv'];
     $diachi = $_POST['diachi_nv'];
-    if(isset($_FILES['anh_nv']['name']))
-    {
-        //tai anh lên
-        //ten, nguon, dich
-        $tenanh=$_FILES['anh_nv']['name'];
-        //auto rename file
-        //lay duoi file
-        $ext = end(explode('.',$tenanh));
+    $anhhientai=$_POST['anh_nv'];
 
-        //doi ten file
-        $tenanh="Book_".rand(000,999).'.'.$ext;
-
-        $source_path=$_FILES['anh_nv']['tmp_name'];
-        $destination_path="../images/nv/".$tenanh;
-        //upload image
-        $upload = move_uploaded_file($source_path,$destination_path);
-
-        //kiem tra anh da tai len hay chua
-        if($upload==false)
+    //cap nhat anh neu chon anh moi
+    if(isset($_FILES['anh_moi']['name'])){
+        //echo $anhhientai;
+        //get detail
+        $tenanh=$_FILES['anh_moi']['name'];
+        if($tenanh!="")
         {
-            $_SESSION['upload']="<div class='error'>Uploaded images successfully</div>";
-            header('location:'.SITEURL.'admin/add-admin.php');
-            die();
+            //co anh, tai anh len, xoa anh cu
+            //auto rename file
+            //lay duoi file
+            $ext = explode('.',$tenanh);
+            $ext = end($ext);
+
+            //doi ten file
+            $tenanh="Admin_".rand(000,999).'.'.$ext;
+
+            $source_path=$_FILES['anh_moi']['tmp_name'];
+            $destination_path="../images/nv/".$tenanh;
+            //upload image
+            $upload = move_uploaded_file($source_path,$destination_path);
+            //kiem tra anh da tai len hay chua
+            if($upload==false)
+            {
+                $_SESSION['upload']="<div class='error'>Uploaded images failed</div>";
+                header('location:'.SITEURL.'admin/manage-admin.php');
+                die();
+            }
+            //xoa anh cu
+            if($anhhientai!=""){
+                $remove_path="../images/nv/".$anhhientai;
+                $remove=unlink($remove_path);
+                //kiem tra anh cu da xoa hay chua, hien thong bao, stop
+                if($remove==false){
+                    $_SESSION['failed-remove']="<div class='error'>Failed to remove current image</div>";
+                    header('location:'.SITEURL.'admin/manage-admin.php');
+                    die();
+                }
+            }
+            
         }
+        else{
+        //khong co anh
+        $tenanh=$anhhientai;
+    }
+}
+    else{
+        $tenanh=$anhhientai;
     }
     
 

@@ -42,6 +42,9 @@
                     <input type="submit" value="Tính" name="submit">
                 </td>
             </tr>
+            <tr>
+                    <td colspan="2"><a href="javascript:window.history.go(-1)">Quay lại</a></td>
+                </tr>
         </table>
     </form>
 </body>

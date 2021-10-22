@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Hình tròn</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
-</head>
-<body style="font-size:25px">
+<?php include('../admin/baitap-form.php'); ?>
     <?php
     if(isset($_POST['submit']))
     {       
@@ -18,8 +8,8 @@
         $chuvi = $bankinh*2* (float)3.14;
     }
     ?>
-    <form action="" method="post">
-        <table bgcolor="#fad390" align="center">
+    <form action="" method="post" style="font-size: 25px;">
+        <table bgcolor="#fad390" align="center" class="nav-form">
                 <tr>
                     <td  colspan=2 bgcolor="#f6b93b" style="color: white;" align="center">DIỆN TÍCH VÀ CHU VI HÌNH TRÒN</td>
                 </tr>
@@ -46,7 +36,9 @@
                         <input type="submit" style="background-color: #b71540; font-size: 20px;" name="submit" value="Tính">
                     </td>
                 </tr>
+                <tr>
+                    <td colspan="2"><a href="javascript:window.history.go(-1)">Quay lại</a></td>
+                </tr>
         </table>
     </form>
-</body>
-</html>
+    <?php include('../admin/partials/footer.php') ?>

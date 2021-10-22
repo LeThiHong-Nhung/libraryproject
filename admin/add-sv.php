@@ -1,8 +1,8 @@
-<?php include('partials/menu.php'); ?>
+<?php ob_start(); include('partials/menu.php'); ?>
 
 <div class="main-content">
     <div class="wrapper">
-        <h1>Add Student</h1>
+        <h1>THÊM SINH VIÊN</h1>
         <br /><br />
         <?php if (isset($_SESSION['add'])) {
             echo $_SESSION['add']; //hien thi thong bao
@@ -44,8 +44,8 @@
                 <tr>
                     <td>Giới tính</td>
                     <td>
-                        <input type="radio" name="gioitinh_sv" value="Nam" checked>Nam
-                        <input type="radio" name="gioitinh_sv" value="Nu">Nữ
+                        <input type="radio" name="gioitinh_sv" value="0">Nam
+                        <input type="radio" name="gioitinh_sv" value="1">Nữ
                     </td>
                 </tr>
                 <tr>
@@ -55,14 +55,40 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Mã thủ thư</td>
+                    <td>Mật khẩu</td>
                     <td>
-                        <input type="text" name="ma_nv">
+                        <input type="password" name="pwd_sv" placeholder="Nhập mật khẩu">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Người quản lí</td>
+                    <td>
+                        <select name="ma_nv">
+                            <?php 
+                    $sql2 ="SELECT * FROM nhan_vien";
+                    $res = mysqli_query($conn, $sql2);
+                    if($res == true)
+                    {
+                    $count = mysqli_num_rows($res);
+                    if($count >=1)
+                    {
+                        while($row = mysqli_fetch_array($res))
+                        {
+                            $ma = $row['ma_nv'];
+                            $ten = $row['hoten_nv'];
+                            echo "<option value='$ma'>";
+                            echo $ten;
+                            echo "</option>";
+                        }
+                    }
+                    }
+                    ?>
+                        </select>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <input type="submit" name="submit" value="Add Student" class="btn-secondary">
+                        <input type="submit" name="submit" value="Thêm sinh viên" class="btn-secondary">
                     </td>
                 </tr>
             </table>
@@ -85,7 +111,8 @@ if (isset($_POST['submit'])) {
     $khoa = $_POST['khoa'];
     $gioitinh = $_POST['gioitinh_sv'];
     $ma_nv = $_POST['ma_nv'];
-    $email = $_POST['email'];
+    $email = $_POST['email_sv'];
+    $pwd= md5($_POST['pwd_sv']);
 
     //cau truy van
     $sql = "INSERT INTO sinh_vien SET
@@ -96,6 +123,7 @@ if (isset($_POST['submit'])) {
     email='$email',
     khoa='$khoa',
     gioitinh_sv='$gioitinh',
+    pwd_sv='$pwd',
     ma_nv='$ma_nv' 
     ";
     
@@ -109,19 +137,19 @@ if (isset($_POST['submit'])) {
         //insert thanh cong
         //echo "insert thanh cong";
         //tao session de hien thi thong bao
-        $_SESSION['add'] = "<div class='success'>Student is added successfully!</div>";
+        $_SESSION['add'] = "<div class='success'>Sinh viên được thêm thành công!</div>";
         //chuyen trang toi manage admin
         header("location:".SITEURL.'admin/manage-sv.php');
     } else {
         //insert khong thanh cong
         //echo "insert khong thanh cong";
         //tao session de hien thi thong bao
-        $_SESSION['add'] = "<div class='error'>Student is added failed!</div>";
+        $_SESSION['add'] = "<div class='error'>Sinh viên không được thêm!</div>";
         //chuyen trang toi manage admin
         header("location:".SITEURL.'admin/add-sv.php');
     }
 }
 
 
-
+ob_end_flush();
 ?>

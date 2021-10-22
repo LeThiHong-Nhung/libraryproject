@@ -1,31 +1,53 @@
-<?php 
+<?php
+    //include config
+    include('../config/constants.php');
+    //kiem tra co id va tenanh khong
+    if(isset($_GET['id']) AND isset($_GET['tenanh']))
+    {
+        //lay dl va xoa
+        $id = $_GET['id'];
+        $tenanh = $_GET['tenanh'];
 
-//include file config
-include("../config/constants.php");
+        //xoa anh neu co anh
+        if($tenanh!="")
+        {
+            $path = "../images/nv/".$tenanh;
+            //xoa anh
+            $remove = unlink($path);
 
-//1. lay id de xoa
-$id = $_GET['id'];
+            //neu xoa k thanh cong thi dung va in thong bao
+            if($remove==false)
+            {
+                //thiet lap session
+                $_SESSION['remove'] = "<div class='error'>Remove image failed</div>";
+                //chuyen ve trang manage + stop
+                header('location:'.SITEURL.'admin/manage-admin.php');
+                die();
+            }
+        }
+        //xoa dl
+        //chuan bi cau truy van xoa
+        $sql = "DELETE FROM nhan_vien WHERE ma_nv='$id' ";
 
-//2. chuan bi cau truy van xoa
-$sql = "DELETE FROM nhan_vien WHERE ma_nv='$id' ";
+        //thuc thi cau truy van
+        $res = mysqli_query($conn,$sql);
 
-//thuc thi cau truy van
-$res = mysqli_query($conn, $sql);
-
-//kiem tra cau truy van xoa
-//3. chuyen ve trang manage voi thong bao thanh cong/loi
-if($res == true) {
-    //echo "Xoa thanh cong";
-    //tao session de hien thi thong bao
-    $_SESSION['delete'] = "<div class='success'>Admin Deleted Successfully!</div>";
-    //chuyen ve trang manage
-    header("location:".SITEURL."admin/manage-admin.php");
-}
-else {
-    //echo "Xoa khong thanh cong";
-    $_SESSION['delete'] = "<div class='error'>Admin Deleted Failed!</div>";
-    header("location:".SITEURL."admin/manage-admin.php");
-}
-
-
+        //kiem tra ban ghi da duoc xoa chua
+        if($res == true){
+            //thiet lap session thong bao thanh cong
+            $_SESSION['delete']="<div class='success'>Delete successfully</div>";
+            header('location:'.SITEURL.'admin/manage-admin.php');
+        }
+        else{
+            //thiet lap session thong bao that bai
+            $_SESSION['delete']="<div class='error'>Delete failed</div>";
+            //var_dump($res);
+            header('location:'.SITEURL.'admin/manage-admin.php');
+        }
+    }
+    else
+    {
+        //chuyen ve trang manage book
+        header('location:'.SITEURL.'admin/manage-admin.php');
+    }
 ?>

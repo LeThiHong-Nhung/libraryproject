@@ -2,22 +2,29 @@
 
 <div class="main-content">
     <div class="wrapper">
-        <h1>Manage Students</h1>
+        <h1>QUẢN LÍ SINH VIÊN</h1>
         <?php if (isset($_SESSION['add'])) {
             echo $_SESSION['add']; //hien thi thong bao
             unset($_SESSION['add']); //xoa bo thong bao
         }
+        if (isset($_SESSION['delete'])) {
+            echo $_SESSION['delete']; //hien thi thong bao
+            unset($_SESSION['delete']); //xoa bo thong bao
+        }
+        if (isset($_SESSION['update'])) {
+            echo $_SESSION['update']; //hien thi thong bao
+            unset($_SESSION['update']); //xoa bo thong bao
+        }
         ?>
         <br /><br />
         <!-- Button for adding admin -->
-        <a href="add-sv.php" class="btn-primary">Add Student</a>
+        <a href="<?php echo SITEURL; ?>admin/add-sv.php" class="btn-primary">Thêm sinh viên</a>
         <br /><br /><br />
 
         <table class="tbl-full">
             <tr>
                 <th>STT</th>
                 <th>Họ tên</th>
-                <th>Địa chỉ</th>
                 <th>Ngày sinh</th>
                 <th>Khoa</th>
                 <th>Giới tính</th>
@@ -54,15 +61,14 @@
                         <tr>
                             <td><?php echo $sn++; ?> </td>
                             <td><?php echo $ten; ?></td>
-                            <td><?php echo $diachi; ?></td>
                             <td><?php echo $ngaysinh; ?></td>
                             <td><?php echo $khoa; ?></td>
                             <td><?php if($gioitinh==0) echo "Nam";
-                            else echo "Nu"; ?></td>
+                            else echo "Nữ"; ?></td>
                             <td><?php echo $email; ?></td>
                             <td>
-                                <a href="#" class="btn-secondary">Update</a>
-                                <a href="#" class="btn-danger">Delete</a>
+                                <a href="<?php echo SITEURL; ?>admin/update-sv.php?id=<?php echo $id;?>"><img src="<?php echo SITEURL; ?>images/edit.png" width="50px" title="Sửa thông tin sinh viên"></a>
+                                <a href="<?php echo SITEURL; ?>admin/delete-sv.php?id=<?php echo $id;?>"><img src="<?php echo SITEURL; ?>images/delete.png" width="50px" title="Xóa sinh viên"></a>
                             </td>
                         </tr>
 

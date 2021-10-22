@@ -67,6 +67,9 @@
                         <input type="submit" style="background-color: #218c74; font-size: 20px;" name="submit" value="Tính tiền">
                     </td>
                 </tr>
+                <tr>
+                    <td colspan="2"><a href="javascript:window.history.go(-1)">Quay lại</a></td>
+                </tr>
         </table>
     </form>
 </body>

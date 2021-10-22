@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Hình chữ nhật</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
-</head>
-<body style="font-size: 25px;">
-    <?php
+<?php
     if(isset($_POST['submit']))
     {       
         $rong = $_POST['rong'];
@@ -19,9 +8,9 @@
         $dientich = $rong * $dai;
         $chuvi = ($dai + $rong)*2;
     }
-    ?>
-    <form action="" method="post">
-        <table bgcolor="#fad390" align="center">
+?>
+    <form action="" method="post" style="font-size:25px">
+        <table bgcolor="#fad390" align="center" style="margin-left: 30%; margin-top: 10%; margin-bottom: 10%">
                 <tr>
                     <td  colspan=2 bgcolor="#f6b93b" align="center">TÍNH TOÁN TRÊN HÌNH CHỮ NHẬT</td>
                 </tr>
@@ -55,7 +44,8 @@
                         <input type="submit" style="background-color: #38ada9; color: white; font-size:20px" name="submit"  value="Tính">
                     </td>
                 </tr>
+                <tr>
+                    <td colspan="2"><a href="javascript:window.history.go(-1)">Quay lại</a></td>
+                </tr>
         </table>
     </form>
-</body>
-</html>

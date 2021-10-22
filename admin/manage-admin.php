@@ -32,6 +32,16 @@
             echo $_SESSION['change-pwd'];
             unset($_SESSION['change-pwd']);
         }
+        if(isset($_SESSION['upload']))
+        {
+            echo $_SESSION['upload'];
+            unset($_SESSION['upload']);
+        }
+        if(isset($_SESSION['failed-remove']))
+        {
+            echo $_SESSION['failed-remove'];
+            unset($_SESSION['failed-remove']);
+        }
         ?>
         <br><br><br>
         <!-- Button for adding admin -->
@@ -106,7 +116,7 @@
                             <td>
                                 <a href="<?php echo SITEURL; ?>admin/update-password.php?id=<?php echo $id; ?>" ><img src="<?php echo SITEURL; ?>images/pwd.png" width="50px" title="Đổi mật khẩu"></a>
                                 <a href="<?php echo SITEURL; ?>admin/update-admin.php?id=<?php echo $id; ?>"><img src="<?php echo SITEURL; ?>images/edit.png" width="50px" title="Sửa thông tin"></a>
-                                <a href="<?php echo SITEURL; ?>admin/delete-admin.php?id=<?php echo $id; ?>"><img src="<?php echo SITEURL; ?>images/delete.png" width="50px" title="Xóa thủ thư"></a>
+                                <a href="<?php echo SITEURL; ?>admin/delete-admin.php?id=<?php echo $id; ?>&tenanh=<?php echo $tenanh; ?>"><img src="<?php echo SITEURL; ?>images/delete.png" width="50px" title="Xóa thủ thư"></a>
                             </td>
                         </tr>
 

@@ -62,6 +62,9 @@
                         <input type="submit" style="background-color: #38ada9; font-size: 20px;" name="submit" value="Tính">
                     </td>
                 </tr>
+                <tr>
+                    <td colspan="2"><a href="javascript:window.history.go(-1)">Quay lại</a></td>
+                </tr>
         </table>
     </form>
 </body>

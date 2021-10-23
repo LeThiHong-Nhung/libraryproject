@@ -14,27 +14,38 @@
 <section class="categories">
     <div class="container">
         <h2 class="text-center">Explore Books</h2>
-        <a href="category-book.php">
-            <div class="box-3 float-container">
-                <img src="images/truyenngan.jpg" alt="Book" class="img-responsive img-curve">
-
-                <h3 class="float-text text-white">Book</h3>
-            </div>
-        </a>
-        <a href="category-book.php">
-            <div class="box-3 float-container">
-                <img src="images/tho.jpg" alt="Book" class="img-responsive img-curve">
-
-                <h3 class="float-text text-white">Book</h3>
-            </div>
-        </a>
-        <a href="category-book.php">
-            <div class="box-3 float-container">
-                <img src="images/tieuthuyet.jpg" alt="Book" class="img-responsive img-curve">
-
-                <h3 class="float-text text-white">Book</h3>
-            </div>
-        </a>
+        <?php
+        $sql = "SELECT * FROM the_loai LIMIT 3";
+        $res = mysqli_query($conn, $sql);
+        $count = mysqli_num_rows($res);
+        if ($count > 0) {
+            while ($row = mysqli_fetch_assoc($res)) {
+                $id = $row['ma_tl'];
+                $ten = $row['ten_tl'];
+                $tenanh = $row['anh_tl'];
+        ?>
+            <a href="category-book.php">
+                <div class="box-3 float-container">
+                    <?php
+                    if($tenanh=="")
+                    {
+                        echo "<div class='error'>Khong co anh</div>";
+                    }
+                    else{
+                        ?>
+                        <img src="<?php echo SITEURL; ?>images/category/<?php echo $tenanh; ?>" alt="Book" class="img-responsive img-curve">
+                        <?php
+                    }
+                    ?>
+                    <h3 class="float-text text-white"><?php echo $ten; ?></h3>
+                </div>
+            </a>
+        <?php
+            }
+        } else {
+            echo "<div class='error'>Khong co the loai nao!</div>";
+        }
+        ?>
         <div class="clearfix"></div>
     </div>
 </section>

@@ -43,6 +43,8 @@
         <br>
         <!-- Button for adding book -->
         <a href="<?php echo SITEURL; ?>admin/add-book.php" class="btn-primary">THÊM SÁCH</a>
+        <a href="<?php echo SITEURL; ?>admin/add-category.php" class="btn-primary">THÊM THỂ LOẠI</a>
+        <a href="<?php echo SITEURL; ?>admin/add-author.php" class="btn-primary">THÊM TÁC GIẢ</a>
         <br /><br /><br />
 
         <table class="tbl-full">

@@ -69,13 +69,21 @@ h3{
 .float-text{
     position: absolute;
     bottom: 100px;
-    left: 40%;
+    left: 10%;
 }
 fieldset{
     border: 1px solid white;
     margin: 5%;
     padding: 3%;
     border-radius:5px;
+}
+.success{
+    padding: 2%;
+    color: green;
+}
+.error{
+    padding: 2%;
+    color: red;
 }
 
 /* CSS for nav */
@@ -130,7 +138,7 @@ fieldset{
 .book-menu-box{
     width: 43%;
     margin: 1%;
-    padding: 2%;
+    padding: 1%;
     float: left;
     background-color: white;
     border-radius: 15px;

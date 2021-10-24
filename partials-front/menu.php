@@ -15,7 +15,7 @@
         <div class="container">
             <div class="logo">
                 <a href="#" title="Logo">
-                    <img src="images/logo.png" class="img-responsive" alt="Library Logo">
+                    <img src="images/logo.png" height="auto" class="img-responsive" alt="Library Logo">
                 </a>
             </div>
 

@@ -74,6 +74,21 @@ table tr td{
 .error{
     color: #ff4757;
 }
+input{
+    font-size: 1.15rem;
+    width: 70%;
+}
+select{
+    font-size: 1.15rem;
+    width: 70%;
+}
+textarea{
+    font-size: 1.15rem;
+    width: 70%;
+}
+form table tr td{
+    font-size: 1.15rem;
+}
 
 /* CSS for menu */
 .menu{

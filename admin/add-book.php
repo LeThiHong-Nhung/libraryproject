@@ -17,37 +17,37 @@
                 <tr>
                     <td>Mã sách</td>
                     <td>
-                        <input type="text" name="ma_sach" placeholder="Nhập mã sách">
+                        <input type="text" name="ma_sach" placeholder="Nhập mã sách" required>
                     </td>
                 </tr>
                 <tr>
                     <td>Tên sách</td>
                     <td>
-                        <input type="text" name="ten_sach" placeholder="Nhập tên sách">
+                        <textarea rows="5" type="text" name="ten_sach" placeholder="Nhập tên sách" required></textarea>
                     </td>
                 </tr>
                 <tr>
                     <td>Số lượng</td>
                     <td>
-                        <input type="number" name="soluong" placeholder="Nhập số lượng sách">
+                        <input type="number" name="soluong" placeholder="Nhập số lượng sách" required>
                     </td>
                 </tr>
                 <tr>
                     <td>Số trang</td>
                     <td>
-                        <input type="number" name="sotrang" placeholder="Nhập số trang sách">
+                        <input type="number" name="sotrang" placeholder="Nhập số trang sách" required>
                     </td>
                 </tr>
                 <tr>
                     <td>Giá sách</td>
                     <td>
-                        <input type="number" name="gia_sach" placeholder="Nhập giá sách">
+                        <input type="number" name="gia_sach" placeholder="Nhập giá sách" required>
                     </td>
                 </tr>
                 <tr>
                     <td>Năm xuất bản</td>
                     <td>
-                        <input type="number" name="namxb" placeholder="Nhập năm xuất bản sách">
+                        <input type="number" name="namxb" placeholder="Nhập năm xuất bản sách" required>
                     </td>
                 </tr>
                 <tr>
@@ -131,13 +131,13 @@
                 <tr>
                     <td>Tình trạng</td>
                     <td>
-                        <input type="text" name="tinhtrang" placeholder="Nhập tình trạng sách">
+                        <input type="text" name="tinhtrang" placeholder="Nhập tình trạng sách" required>
                     </td>
                 </tr>
                 <tr>
                     <td>Tóm tắt</td>
                     <td>
-                        <input type="text" name="tomtat" placeholder="Nhập tóm tắt nội dung sách">
+                        <textarea rows="5" required type="text" name="tomtat" placeholder="Nhập tóm tắt nội dung sách"></textarea>
                     </td>
                 </tr>
                 <tr>

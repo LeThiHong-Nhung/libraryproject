@@ -54,7 +54,7 @@
             <tr>
                 <td>Tên sách</td>
                 <td>
-                    <input type="text" name="ten_sach" value="<?php echo $tensach; ?>">
+                    <textarea type="text" name="ten_sach"><?php echo $tensach; ?></textarea>
                 </td>
             </tr>
             <tr>

@@ -61,32 +61,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Người quản lí</td>
-                    <td>
-                        <select name="ma_nv">
-                            <?php 
-                    $sql2 ="SELECT * FROM nhan_vien";
-                    $res = mysqli_query($conn, $sql2);
-                    if($res == true)
-                    {
-                    $count = mysqli_num_rows($res);
-                    if($count >=1)
-                    {
-                        while($row = mysqli_fetch_array($res))
-                        {
-                            $ma = $row['ma_nv'];
-                            $ten = $row['hoten_nv'];
-                            echo "<option value='$ma'>";
-                            echo $ten;
-                            echo "</option>";
-                        }
-                    }
-                    }
-                    ?>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
                     <td colspan="2">
                         <input type="submit" name="submit" value="Thêm sinh viên" class="btn-secondary">
                     </td>
@@ -110,7 +84,6 @@ if (isset($_POST['submit'])) {
     $ngaysinh = $_POST['ngaysinh_sv'];
     $khoa = $_POST['khoa'];
     $gioitinh = $_POST['gioitinh_sv'];
-    $ma_nv = $_POST['ma_nv'];
     $email = $_POST['email_sv'];
     $pwd= md5($_POST['pwd_sv']);
 
@@ -123,8 +96,7 @@ if (isset($_POST['submit'])) {
     email='$email',
     khoa='$khoa',
     gioitinh_sv='$gioitinh',
-    pwd_sv='$pwd',
-    ma_nv='$ma_nv' 
+    pwd_sv='$pwd' 
     ";
     
 

@@ -115,8 +115,8 @@
                             <td><?php echo $gia_sach; ?></td>
                             <td><?php echo $soluong; ?></td>
                             <td>
-                                <a href="<?php echo SITEURL; ?>admin/update-book.php?id=<?php echo $idsach; ?>"><img src="<?php echo SITEURL; ?>images/edit.png" width="50px" title="Sửa thông tin sách"></a>
-                                <a href="<?php echo SITEURL; ?>admin/delete-book.php?id=<?php echo $idsach; ?>&tenanh=<?php echo $tenanh; ?>"><img src="<?php echo SITEURL; ?>images/delete.png" width="50px" title="Xóa sách"></a>
+                                <a href="<?php echo SITEURL; ?>admin/update-book.php?idsach=<?php echo $idsach; ?>&tenanh=<?php echo $tenanh; ?>"><img src="<?php echo SITEURL; ?>images/edit.png" width="50px" title="Sửa thông tin sách"></a>
+                                <a href="<?php echo SITEURL; ?>admin/delete-book.php?idsach=<?php echo $idsach; ?>&tenanh=<?php echo $tenanh; ?>"><img src="<?php echo SITEURL; ?>images/delete.png" width="50px" title="Xóa sách"></a>
                             </td>
                         </tr>
 

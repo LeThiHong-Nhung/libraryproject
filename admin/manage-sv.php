@@ -52,7 +52,6 @@
                         $ngaysinh = $rows['ngaysinh_sv'];
                         $khoa = $rows['khoa'];
                         $gioitinh = $rows['gioitinh_sv'];
-                        $ma_nv = $rows['ma_nv'];
                         $email = $rows['email'];
 
                         //hien thi du lieu
@@ -63,7 +62,7 @@
                             <td><?php echo $ten; ?></td>
                             <td><?php echo $ngaysinh; ?></td>
                             <td><?php echo $khoa; ?></td>
-                            <td><?php if($gioitinh==0) echo "Nam";
+                            <td><?php if($gioitinh=='Nam') echo "Nam";
                             else echo "Nữ"; ?></td>
                             <td><?php echo $email; ?></td>
                             <td>

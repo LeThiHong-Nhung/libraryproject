@@ -5,16 +5,16 @@
 
         <br><br>
 <?php
-        if(isset($_GET['id']))
+        if(isset($_GET['idsach']))
         {
             //lay id va dl
-            $id=$_GET['id'];
+            $idsach=$_GET['idsach'];
             //lay dl
-            $sql = "SELECT * FROM sach WHERE ma_sach='$id' ";
+            $sql = "SELECT * FROM sach WHERE ma_sach='$idsach' ";
             //thuc thi cau truy van
             $res = mysqli_query($conn,$sql);
             $count = mysqli_num_rows($res);
-            if($count>0)
+            if($count==1)
             {
                 //lay dl
                 $row = mysqli_fetch_assoc($res);
@@ -97,7 +97,9 @@
                         {
                             $ma = $row['ma_nxb'];
                             $ten = $row['ten_nxb'];
-                            echo "<option value='$ma' <?php if($ma_nxb==$ma) echo selected ?> >";
+                            ?>
+                            <option  <?php if($ma_nxb==$ma) echo "selected"; ?> value="<?php echo $ma; ?>" >
+                            <?php
                             echo $ten;
                             echo "</option>";
                         }
@@ -123,7 +125,9 @@
                         {
                             $ma = $row['ma_tl'];
                             $ten = $row['ten_tl'];
-                            echo "<option value='$ma' <?php if($ma_tl==$ma) echo selected ?> >";
+                            ?>
+                            <option  <?php if($ma_tl==$ma) echo "selected"; ?> value="<?php echo $ma; ?>" >
+                            <?php
                             echo $ten;
                             echo "</option>";
                         }
@@ -149,7 +153,9 @@
                         {
                             $ma = $row['ma_tg'];
                             $ten = $row['ten_tg'];
-                            echo "<option value='$ma' <?php if($ma_tg==$ma) echo selected ?> >";
+                            ?>
+                            <option  <?php if($ma_tg==$ma) echo "selected"; ?> value="<?php echo $ma; ?>" >
+                            <?php
                             echo $ten;
                             echo "</option>";
                         }
@@ -219,7 +225,7 @@
             $ma_tg = $_POST['ma_tg'];
             $tinhtrang = $_POST['tinhtrang'];
             $tomtat = $_POST['tomtat'];
-            $anhhientai=$_POST['anh_sach'];
+            $anhhientai=$_POST['anh_sach']; 
                     
             
             //cap nhat anh neu chon anh moi
@@ -285,6 +291,7 @@
             tomtat='$tomtat' 
             WHERE ma_sach='$idsach' 
             ";
+            //var_dump($sql2);
 
             //thuc thi
             $res2 = mysqli_query($conn, $sql2);

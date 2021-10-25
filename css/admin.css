@@ -74,7 +74,15 @@ table tr td{
 .error{
     color: #ff4757;
 }
-input{
+input[type="text"]{
+    font-size: 1.15rem;
+    width: 70%;
+}
+input[type="date"]{
+    font-size: 1.15rem;
+    width: 70%;
+}
+input[type="email"]{
     font-size: 1.15rem;
     width: 70%;
 }

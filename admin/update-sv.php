@@ -29,10 +29,9 @@
                 $gioitinh = $rows['gioitinh_sv'];
                 $ngaysinh = $rows['ngaysinh_sv'];
                 $email = $rows['email'];
-                $ma_nv = $rows['ma_nv'];
             } else {
                 //chuyen ve trang manage
-                header("location:".SITEURL."admin/manage-admin.php");
+                header("location:".SITEURL."admin/manage-sv.php");
             }
             //echo $gioitinh;
         }
@@ -61,8 +60,8 @@
                 <tr>
                     <td>Giới tính</td>
                     <td>
-                        <input type="radio" name="gioitinh_sv" value="0" <?php if($gioitinh==0) echo 'checked'; ?> >Nam
-                        <input type="radio" name="gioitinh_sv" value="1" <?php if($gioitinh==1) echo 'checked'; ?> >Nữ
+                        <input type="radio" name="gioitinh_sv" value="Nam" <?php if($gioitinh=='Nam') echo "checked"; ?> >Nam
+                        <input type="radio" name="gioitinh_sv" value="Nữ" <?php if($gioitinh=='Nữ') echo "checked"; ?> >Nữ
                     </td>
                 </tr>
                 <tr>
@@ -75,33 +74,6 @@
                     <td>Email</td>
                     <td>
                         <input type="email" name="email_sv" value="<?php if(isset($email)) echo $email; ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Người quản lí</td>
-                    <td>
-                        <select name="ma_nv">
-                            <?php 
-                    $sql2 ="SELECT * FROM nhan_vien";
-                    $res = mysqli_query($conn, $sql2);
-                    //$se = "selected";
-                    if($res == true)
-                    {
-                    $count = mysqli_num_rows($res);
-                    if($count >=1)
-                    {
-                        while($row = mysqli_fetch_array($res))
-                        {
-                            $ma = $row['ma_nv'];
-                            $ten = $row['hoten_nv'];
-                            echo "<option value='$ma' <?php if($ma_nv==$ma) echo selected; ?>  >";
-                            echo $ten;
-                            echo "</option>";
-                        }
-                    }
-                    }
-                    ?>
-                        </select>
                     </td>
                 </tr>
                 <tr>
@@ -127,7 +99,6 @@ if(isset($_POST['submit']))
     $gioitinh = $_POST['gioitinh_sv'];
     $ngaysinh = $_POST['ngaysinh_sv'];
     $email = $_POST['email_sv'];
-    $ma_nv = $_POST['ma_nv'];
     //echo $gioitinh;
 
     //chuan bi cau truy van
@@ -136,9 +107,8 @@ if(isset($_POST['submit']))
     diachi_sv='$diachi',
     ngaysinh_sv='$ngaysinh',
     email='$email',
-    khoa='$khoa',
     gioitinh_sv='$gioitinh',
-    ma_nv='$ma_nv' 
+    khoa='$khoa'
     WHERE ma_sv='$id' 
     ";
     //thuc thi cau truy van

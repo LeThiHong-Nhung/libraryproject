@@ -1,4 +1,6 @@
-<?php include('config/constants.php'); ?>
+<?php include('config/constants.php');
+include('login-check-sv.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,20 +22,29 @@
             </div>
 
             <div class="menu text-right">
-            <ul>
-                <li>
-                    <a href="<?php echo SITEURL; ?>">Home</a>
-                </li>
-                <li>
-                    <a href="<?php echo SITEURL; ?>book.php">Book</a>
-                </li>
-                <li>
-                    <a href="<?php echo SITEURL; ?>categories.php">Catagories</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-            </ul>
+                <ul>
+                    <li>
+                        <a href="<?php echo SITEURL; ?>">Home</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo SITEURL; ?>book.php">Book</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo SITEURL; ?>categories.php">Catagories</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo SITEURL; ?>logout-sv.php">Đăng xuất</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo SITEURL; ?>signin-sv.php">Đăng kí</a>
+                    </li>
+                    <?php
+                    $id=$_SESSION['user'];
+                    ?>
+                    <li>
+                        <a href="<?php echo SITEURL; ?>detail.php?sv_id=<?php echo $id; ?>"><img src="images/user.png" title="Xem chi tiết thông tin sinh viên" width="4%" height="auto"></a>
+                    </li>
+                </ul>
             </div>
             <div class="clearfix"></div>
         </div>

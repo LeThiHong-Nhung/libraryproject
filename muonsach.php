@@ -88,7 +88,8 @@ else{
                 ngay_muon='$ngay_muon',
                 soluong_muon='$soluong_muon',
                 ma_sach='$ma_sach',
-                ma_sv='$ma_sv' 
+                ma_sv='$ma_sv',
+                active=0 
                 ";
 
                 $res3=mysqli_query($conn,$sql3);

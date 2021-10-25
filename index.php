@@ -16,6 +16,16 @@ if(isset($_SESSION['muonsach']))
     echo $_SESSION['muonsach'];
     unset($_SESSION['muonsach']);
 }
+if(isset($_SESSION['login']))
+{
+    echo $_SESSION['login'];
+    unset($_SESSION['login']);
+}
+if(isset($_SESSION['the']))
+{
+    echo $_SESSION['the'];
+    unset($_SESSION['the']);
+}
 ?>
 
 <!-- Categories section starts here -->

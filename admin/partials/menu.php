@@ -21,7 +21,7 @@
                 <li><a href="manage-admin.php">THỦ THƯ</a></li>
                 <li><a href="manage-sv.php">SINH VIÊN</a></li>
                 <li><a href="manage-book.php">SÁCH</a></li>
-                <li><a href="manage-card.php">THẺ</a></li>
+                <li><a href="manage-card.php">MƯỢN SÁCH</a></li>
                 <li><a href="baitap-form.php">FORM</a></li>
                 <li><a href="baitap-array.php">ARRAY</a></li>
                 <li><a href="baitap-sql.php">SQL</a></li>

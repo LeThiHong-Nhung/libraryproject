@@ -41,8 +41,8 @@
 //Luu vao csdl
 //kiem tra nut submit
 if (isset($_POST['submit'])) {
-    $id = $_POST['ma_tg'];
-    $ten = $_POST['ten_tg'];
+    $id = mysqli_real_escape_string($conn, $_POST['ma_tg']);
+    $ten = mysqli_real_escape_string($conn, $_POST['ten_tg']);
  
     //cau truy van
     $sql = "INSERT INTO tac_gia SET

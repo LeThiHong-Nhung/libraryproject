@@ -47,8 +47,8 @@
 //Luu vao csdl
 //kiem tra nut submit
 if (isset($_POST['submit'])) {
-    $id = $_POST['ma_tl'];
-    $ten = $_POST['ten_tl'];
+    $id = mysqli_real_escape_string($conn, $_POST['ma_tl']);
+    $ten = mysqli_real_escape_string($conn, $_POST['ten_tl']);
     $tenanh='';
     
     //kiem tra anh duoc chon chua

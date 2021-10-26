@@ -49,8 +49,9 @@
 if(isset($_POST['submit']))
 {
     //lay du lieu tu form dang nhap
-    $username = $_POST['username'];
-    $password = md5($_POST['password']);
+    $username = mysqli_real_escape_string($conn,$_POST['username']);
+    $raw_pass=md5($_POST['password']);
+    $password = mysqli_real_escape_string($conn,$raw_pass);
 
     //kiem tra co ton tai admin k
     $sql = "SELECT * FROM nhan_vien WHERE email_nv='$username' AND pwd='$password' ";

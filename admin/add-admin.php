@@ -88,14 +88,15 @@
 
 //kiem tra nut submit
 if (isset($_POST['submit'])) {
-    $id = $_POST['ma_nv'];
-    $ten = $_POST['hoten_nv'];
-    $email = $_POST['email_nv'];
+    $id = mysqli_real_escape_string($conn, $_POST['ma_nv']);
+    $ten = mysqli_real_escape_string($conn, $_POST['hoten_nv']);
+    $email = mysqli_real_escape_string($conn, $_POST['email_nv']);
     $sdt = $_POST['sdt_nv'];
     $cmnd = $_POST['cmnd_nv'];
     $gioitinh = $_POST['gioitinh_nv'];
-    $diachi = $_POST['diachi_nv'];
-    $pwd= md5($_POST['pwd']);
+    $diachi = mysqli_real_escape_string($conn, $_POST['diachi_nv']);
+    $raw_pwd= md5($_POST['pwd']);
+    $pwd= mysqli_real_escape_string($conn, $raw_pwd);
 
 
     //kiem tra anh duoc chon chua

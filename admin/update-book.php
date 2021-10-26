@@ -215,16 +215,16 @@
         {
             //lay dl tu form
             $idsach = $_POST['ma_sach'];
-            $ten_sach = $_POST['ten_sach'];
-            $soluong = $_POST['soluong'];
-            $sotrang = $_POST['sotrang'];
-            $gia_sach = $_POST['gia_sach'];
-            $namxb = $_POST['namxb'];
+            $ten_sach = mysqli_real_escape_string($conn, $_POST['ten_sach']);
+            $soluong =$_POST['soluong'];
+            $sotrang =$_POST['sotrang'];
+            $gia_sach =$_POST['gia_sach'];
+            $namxb =$_POST['namxb'];
             $ma_nxb = $_POST['ma_nxb'];
             $ma_tl = $_POST['ma_tl'];
             $ma_tg = $_POST['ma_tg'];
-            $tinhtrang = $_POST['tinhtrang'];
-            $tomtat = $_POST['tomtat'];
+            $tinhtrang = mysqli_real_escape_string($conn, $_POST['tinhtrang']);
+            $tomtat = mysqli_real_escape_string($conn, $_POST['tomtat']);
             $anhhientai=$_POST['anh_sach']; 
                     
             

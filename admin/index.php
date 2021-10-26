@@ -2,7 +2,7 @@
 <!-- Main content section starts -->
 <div class="menu main-content">
     <div class="wrapper">
-        <h1>Dashboard</h1>
+        <h1>TRANG QUẢN TRỊ THƯ VIỆN</h1>
 
         <?php if (isset($_SESSION['login']))
         {
@@ -12,24 +12,45 @@
         ?>
         <br><br>
         <div class="col-4 text-center">
-            <h1>5</h1>
+            <?php
+            $sql="SELECT * FROM the_loai";
+            $res=mysqli_query($conn,$sql);
+            $count=mysqli_num_rows($res);
+            ?>
+            <h1><?php echo $count; ?></h1>
             <br />
-            Catagories
+            Thể loại
         </div>
         <div class="col-4 text-center">
-            <h1>5</h1>
+        <?php
+            $sql2="SELECT * FROM sach";
+            $res2=mysqli_query($conn,$sql2);
+            $count2=mysqli_num_rows($res2);
+            ?>
+            <h1><?php echo $count2; ?></h1>
             <br />
-            Catagories
+            Sách
         </div>
         <div class="col-4 text-center">
-            <h1>5</h1>
+        <?php
+            $sql3="SELECT * FROM phieu_muon WHERE active='1' ";
+            $res3=mysqli_query($conn,$sql3);
+            $count3=mysqli_num_rows($res3);
+            ?>
+            <h1><?php echo $count3; ?></h1>
             <br />
-            Catagories
+            Tổng lượt mượn
         </div>
         <div class="col-4 text-center">
-            <h1>5</h1>
+        <?php
+            $sql4="SELECT * FROM sinh_vien";
+            $res4=mysqli_query($conn,$sql4);
+            $count4=mysqli_num_rows($res4);
+            //var_dump($count4);
+            ?>
+            <h1><?php echo $count4; ?></h1>
             <br />
-            Catagories
+            Tổng sinh viên
         </div>
         <div class="clearfix"></div>
     </div>

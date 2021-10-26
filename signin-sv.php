@@ -63,15 +63,17 @@
             <?php
             if(isset($_POST['submit']))
             {
-                $id = $_POST['ma_sv'];
-                $ten = $_POST['hoten_sv'];
-                $diachi = $_POST['diachi_sv'];
-                $ngaysinh = $_POST['ngaysinh_sv'];
-                $khoa = $_POST['khoa'];
-                $gioitinh = $_POST['gioitinh_sv'];
-                $email = $_POST['email_sv'];
-                $pwd= md5($_POST['pwd_sv']);
-                $confirm = md5($_POST['confirm']);
+                $id = mysqli_real_escape_string($conn, $_POST['ma_sv']);
+                $ten = mysqli_real_escape_string($conn, $_POST['hoten_sv']);
+                $diachi = mysqli_real_escape_string($conn, $_POST['diachi_sv']);
+                $ngaysinh = mysqli_real_escape_string($conn, $_POST['ngaysinh_sv']);
+                $khoa = mysqli_real_escape_string($conn, $_POST['khoa']);
+                $gioitinh = mysqli_real_escape_string($conn, $_POST['gioitinh_sv']);
+                $email = mysqli_real_escape_string($conn, $_POST['email_sv']);
+                $raw_pwd= md5($_POST['pwd_sv']);
+                $pwd= mysqli_real_escape_string($conn, $raw_pwd);
+                $raw_confirm = md5($_POST['confirm']);
+                $confirm = mysqli_real_escape_string($conn, $raw_confirm);
 
                 if($pwd==$confirm)
                 {

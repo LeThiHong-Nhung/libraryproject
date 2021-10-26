@@ -92,13 +92,13 @@ if(isset($_POST['submit']))
 {
     //echo "Button clicked";
     //lay thong tin de update
-    $id = $_POST['id'];
-    $ten = $_POST['hoten_sv'];
-    $diachi = $_POST['diachi_sv'];
-    $khoa = $_POST['khoa'];
-    $gioitinh = $_POST['gioitinh_sv'];
-    $ngaysinh = $_POST['ngaysinh_sv'];
-    $email = $_POST['email_sv'];
+    $id =$_POST['id'];
+    $ten = mysqli_real_escape_string($conn, $_POST['hoten_sv']);
+    $diachi = mysqli_real_escape_string($conn, $_POST['diachi_sv']);
+    $khoa = mysqli_real_escape_string($conn, $_POST['khoa']);
+    $gioitinh =$_POST['gioitinh_sv'];
+    $ngaysinh = mysqli_real_escape_string($conn, $_POST['ngaysinh_sv']);
+    $email = mysqli_real_escape_string($conn, $_POST['email_sv']);
     //echo $gioitinh;
 
     //chuan bi cau truy van

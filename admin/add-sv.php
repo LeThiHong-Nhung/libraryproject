@@ -78,14 +78,15 @@
 
 //kiem tra nut submit
 if (isset($_POST['submit'])) {
-    $id = $_POST['ma_sv'];
-    $ten = $_POST['hoten_sv'];
-    $diachi = $_POST['diachi_sv'];
+    $id = mysqli_real_escape_string($conn, $_POST['ma_sv']);
+    $ten = mysqli_real_escape_string($conn, $_POST['hoten_sv']);
+    $diachi = mysqli_real_escape_string($conn, $_POST['diachi_sv']);
     $ngaysinh = $_POST['ngaysinh_sv'];
-    $khoa = $_POST['khoa'];
+    $khoa = mysqli_real_escape_string($conn, $_POST['khoa']);
     $gioitinh = $_POST['gioitinh_sv'];
-    $email = $_POST['email_sv'];
-    $pwd= md5($_POST['pwd_sv']);
+    $email = mysqli_real_escape_string($conn, $_POST['email_sv']);
+    $raw_pwd= md5($_POST['pwd_sv']);
+    $pwd= mysqli_real_escape_string($conn, $raw_pwd);
 
     //cau truy van
     $sql = "INSERT INTO sinh_vien SET

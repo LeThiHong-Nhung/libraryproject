@@ -120,12 +120,12 @@ if(isset($_POST['submit']))
     //echo "Button clicked";
     //lay thong tin de update
     $id = $_POST['id'];
-    $ten = $_POST['hoten_nv'];
-    $email = $_POST['email_nv'];
+    $ten = mysqli_real_escape_string($conn, $_POST['hoten_nv']);
+    $email = mysqli_real_escape_string($conn, $_POST['email_nv']);
     $sdt = $_POST['sdt_nv'];
-    $cmnd = $_POST['cmnd_nv'];
+    $cmnd = mysqli_real_escape_string($conn, $_POST['cmnd_nv']);
     $gioitinh = $_POST['gioitinh_nv'];
-    $diachi = $_POST['diachi_nv'];
+    $diachi = mysqli_real_escape_string($conn, $_POST['diachi_nv']);
     $anhhientai=$_POST['anh_nv'];
 
     //cap nhat anh neu chon anh moi

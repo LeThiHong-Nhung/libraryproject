@@ -79,10 +79,10 @@ else{
             <?php
             if(isset($_POST['submit']))
             {
-                $ngay_muon= $_POST['ngay_muon'];
-                $soluong_muon= $_POST['soluong_muon'];
-                $ma_sach= $_POST['ma_sach'];
-                $ma_sv= $_POST['ma_sv'];
+                $ngay_muon= mysqli_real_escape_string($conn, $_POST['ngay_muon']);
+                $soluong_muon= mysqli_real_escape_string($conn,$_POST['soluong_muon']);
+                $ma_sach= mysqli_real_escape_string($conn ,$_POST['ma_sach']);
+                $ma_sv= mysqli_real_escape_string($conn, $_POST['ma_sv']);
 
                 $sql3="INSERT INTO phieu_muon SET
                 ngay_muon='$ngay_muon',
@@ -98,7 +98,7 @@ else{
                     header('location:'.SITEURL);
                 }
                 else{
-                    $_SESSION['muonsach']="<div class='error text-center'>Tao phieu muon thanh cong</div>";
+                    $_SESSION['muonsach']="<div class='error text-center'>Tao phieu muon khong thanh cong</div>";
                     header('location:'.SITEURL);
                 }
             }

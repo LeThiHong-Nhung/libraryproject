@@ -49,8 +49,9 @@
 if(isset($_POST['submit']))
 {
     //lay du lieu tu form dang nhap
-    $ma_sv = $_POST['ma_sv'];
-    $pwd_sv = md5($_POST['pwd_sv']);
+    $ma_sv = mysqli_real_escape_string($conn,$_POST['ma_sv']);
+    $raw_pwd_sv = md5($_POST['pwd_sv']);
+    $pwd_sv=mysqli_real_escape_string($conn, $raw_pwd_sv);    
 
     //kiem tra co ton tai sinh vien k
     $sql = "SELECT * FROM sinh_vien WHERE ma_sv='$ma_sv' AND pwd_sv='$pwd_sv' ";

@@ -42,9 +42,12 @@ if(isset($_POST['submit']))
     //echo "Button clicked";
     //lay thong tin de update
     $id = $_GET['id'];
-    $current_password = md5($_POST['current_password']);
-    $new_password = md5($_POST['new_password']);
-    $confirm_password = md5($_POST['confirm_password']);
+    $raw_current_password = md5($_POST['current_password']);
+    $current_password = mysqli_real_escape_string($conn, $raw_current_password);
+    $raw_new_password = md5($_POST['new_password']);
+    $new_password = mysqli_real_escape_string($conn, $raw_new_password);
+    $raw_confirm_password = md5($_POST['confirm_password']);
+    $confirm_password = mysqli_real_escape_string($conn, $raw_confirm_password);
 
     //chuan bi cau truy van
     $sql = "SELECT * FROM nhan_vien WHERE ma_nv=$id AND pwd='$current_password' ";

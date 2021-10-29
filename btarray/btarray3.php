@@ -1,9 +1,21 @@
-<!doctype html>
-  <head>
-    <title>Kiểm tra số n</title>
-  </head>
-<body style="font-size:25px">
-  <?php
+<?php include('../admin/partials/menu.php') ?>
+
+<div class="main-content">
+    <div class="wrapper">
+        <h1>BÀI TẬP MẢNG, CHUỖI VÀ HÀM</h1>
+        <br /><br />
+        <br>
+        <!-- BÀI TẬP FORM, ARRAY, MYSQL -->
+        <a href="<?php echo SITEURL; ?>btarray/btarray1.php" class="btn-primary">Bài 1</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray2.php" class="btn-primary">Bài 2</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray3.php" class="btn-primary">Bài 3</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray4.php" class="btn-primary">Bài 4</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray5.php" class="btn-primary">Bài 5</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray6.php" class="btn-primary">Bài 6</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray7.php" class="btn-primary">Bài 7</a>
+
+        <br /><br /><br />
+        <?php
   #var_dump($so);
   if (isset($_POST['submit'])) {
     $so = 0;
@@ -67,7 +79,7 @@
   }
   ?>
   <form action="" method="POST">
-    <table style="border: 1px solid #c44569;" align="center">
+    <table style="border: 1px solid #c44569; width: 60%;" align="center">
       <th style="text-align: center; background-color: #c44569;" colspan=2>KIỂM TRA SỐ N</th>
       <tr style="background-color: #f8a5c2;">
         <td>Nhập số phần tử: </td>
@@ -110,6 +122,7 @@
       </tr>
     </table>
   </form>
-</body>
-
-</html>
+    </div>
+</div>
+  
+<?php include('../admin/partials/footer.php'); ?>

@@ -1,65 +1,66 @@
-<?php ob_start(); include('partials/menu.php') ?>
+<?php ob_start();
+include('partials/menu.php') ?>
 <div class="main-content">
     <div class="wrapper">
-        <h1>Thêm nhà xuất bản</h1>
+        <h1>Thêm thẻ thư viện</h1>
         <br>
         <?php if (isset($_SESSION['add'])) {
             echo $_SESSION['add']; //hien thi thong bao
             unset($_SESSION['add']); //xoa bo thong bao
         }
+        if (isset($_SESSION['update-the'])) {
+            echo $_SESSION['update-the']; //hien thi thong bao
+            unset($_SESSION['update-the']); //xoa bo thong bao
+        }
+        if (isset($_SESSION['delete-the'])) {
+            echo $_SESSION['delete-the']; //hien thi thong bao
+            unset($_SESSION['delete-the']); //xoa bo thong bao
+        }
         ?><br>
-        <form action="" method="POST" enctype="multipart/form-data">
-            <table class="tbl-30">
-                <tr>
-                    <td>Mã nhà xuất bản</td>
+        <table class="tbl-full">
+            <tr>
+                <th>Mã thẻ</th>
+                <th>Họ tên</th>
+                <th>Thời gian cấp</th>
+                <th>Hạn sử dụng</th>
+                <th>Kích hoạt thẻ</th>
+            </tr>
+            <?php
+            $sql = "SELECT * FROM the_thu_vien";
+            $res = mysqli_query($conn, $sql);
+            if ($res == true) {
+                while ($row = mysqli_fetch_assoc($res)) {
+                    $ma_the = $row['ma_the'];
+                    $thoigiancap = $row['thoigiancap'];
+                    $hsd = $row['hsd'];
+                    $ma_sv = $row['ma_sv'];
+                    $sql2 = "SELECT hoten_sv FROM sinh_vien WHERE ma_sv='$ma_sv' ";
+                    $res2 = mysqli_query($conn, $sql2);
+                    $row2 = mysqli_fetch_assoc($res2);
+                    $hoten_sv = $row2['hoten_sv'];
+
+                    //
+                    $active = $row['active'];
+                    echo "<tr>";
+                    echo "<td>".$ma_the."</td>";
+                    echo "<td>".$hoten_sv."</td>";
+                    echo "<td>".$thoigiancap."</td>";
+                    echo "<td>".$hsd."</td>";
+                    if($active==0) echo "<td><div class='error'>Chưa duyệt</div></td>"; else echo "<td><div class='success'>Đã duyệt</div></td>";
+                    ?>
                     <td>
-                        <input type="text" name="ma_nxb" placeholder="Ví dụ: TN">
+                        <a href="<?php echo SITEURL; ?>admin/update-thetv.php?id=<?php echo $ma_the; ?>"><img src="<?php echo SITEURL; ?>images/edit.png" width="50px" title="Sửa thông tin thẻ"></a>
+                        <a href="<?php echo SITEURL; ?>admin/delete-thetv.php?id=<?php echo $ma_the; ?>"><img src="<?php echo SITEURL; ?>images/delete.png" width="50px" title="Xóa thẻ"></a>
                     </td>
-                </tr>
-                <tr>
-                    <td>Tên nhà xuất bản</td>
-                    <td>
-                        <input type="text" name="ten_nxb" placeholder="Ví dụ: Nhà xuất bản Thanh Niên">
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input type="submit" name="submit" value="Thêm nhà xuất bản" class="btn-secondary">
-                    </td>
-                </tr>
-            </table>
-        </form>
+                    <?php
+                    echo "</tr>";
+                }
+            }
+            ?>
+        </table>
+        <a href="<?php echo SITEURL; ?>admin/manage-card.php"><img src="<?php echo SITEURL; ?>images/back.png" width="50px" title="Trở lại trang quản lí thẻ"></a>
     </div>
 
 </div>
-<?php include('partials/footer.php') ?>
-<?php
-//Luu vao csdl
-//kiem tra nut submit
-if (isset($_POST['submit'])) {
-    $id = $_POST['ma_nxb'];
-    $ten = $_POST['ten_nxb'];
-    
-    
-    //cau truy van
-    $sql = "INSERT INTO nha_xuat_ban SET
-    ma_nxb='$id',
-    ten_nxb='$ten'  
-    ";
-    $res = mysqli_query($conn, $sql);
-    if ($res == true) {
-        $_SESSION['add'] = "<div class='success'>Thêm nhà xuất bản thành công!</div>";
-        //echo "Thanh cong";
-        header('location:'.SITEURL.'admin/manage-book.php');
-        }
-        else{
-        //insert khong thanh cong
-        //echo "insert khong thanh cong";
-        //tao session de hien thi thong bao
-        $_SESSION['add'] = "<div class='error'>Thêm nhà xuất bản thất bại!</div>";
-        //chuyen trang toi manage admin 
-        header("location:".SITEURL.'admin/add-category.php');
-    }
-}
-ob_end_flush();
-?>
+<?php include('partials/footer.php');
+ob_end_flush(); ?>

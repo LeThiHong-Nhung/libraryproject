@@ -1,12 +1,16 @@
+<?php
+    include('../config/constants.php'); 
+    include('../admin/partials/login-check.php');
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Kiểm tra số n</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <title>Thư viện - Trang chủ</title>
+    <link rel="stylesheet" href="../css/admin.css">
     <script src='main.js'></script>
     <style>
     input[type=text] {
@@ -19,12 +23,45 @@
     input[type=text]:focus {
         background-color: lightblue;
     }
+    table{
+        width: 60%;
+    }
     </style>
 </head>
 
-<body style="font-size: 25px;">
+<body>
+<!-- Menu section starts -->
+<div class="menu text-center">
+        <div class="wrapper">
+            <ul>
+                <li><a href="<?php echo SITEURL; ?>admin/index.php">TRANG CHỦ</a></li>
+                <li><a href="<?php echo SITEURL; ?>admin/manage-admin.php">THỦ THƯ</a></li>
+                <li><a href="<?php echo SITEURL; ?>admin/manage-sv.php">SINH VIÊN</a></li>
+                <li><a href="<?php echo SITEURL; ?>admin/manage-book.php">SÁCH</a></li>
+                <li><a href="<?php echo SITEURL; ?>admin/manage-card.php">MƯỢN SÁCH</a></li>
+                <li><a href="<?php echo SITEURL; ?>admin/baitap.php">BÀI TẬP</a></li>
+                <li><a href="<?php echo SITEURL; ?>admin/thongtincanhan.php">THÔNG TIN CÁ NHÂN</a></li>
+                <li><a href="<?php echo SITEURL; ?>admin/logout.php">ĐĂNG XUẤT</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Menu section ends -->
+    <div class="main-content">
+    <div class="wrapper">
+        <h1>BÀI TẬP MẢNG, CHUỖI VÀ HÀM</h1>
+        <br /><br />
+        <br>
+        <!-- BÀI TẬP FORM, ARRAY, MYSQL -->
+        <a href="<?php echo SITEURL; ?>btarray/btarray1.php" class="btn-primary">Bài 1</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray2.php" class="btn-primary">Bài 2</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray3.php" class="btn-primary">Bài 3</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray4.php" class="btn-primary">Bài 4</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray5.php" class="btn-primary">Bài 5</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray6.php" class="btn-primary">Bài 6</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray7.php" class="btn-primary">Bài 7</a>
 
-<?php
+        <br /><br /><br />
+        <?php
 $so=0;
 $mang=array();
 $sochan=0;
@@ -161,7 +198,7 @@ function simple_quick_sort($arr)
             <tr>
                 <td>Mảng phát sinh: </td>
                 <td>
-                    <textarea cols="20" rows="5"
+                    <textarea cols="20" rows="4"
                         readonly><?php if(isset($mang)) {print implode(", ", $mang); /*print join(',', $mang);*/}  ?> </textarea>
                 </td>
             </tr>
@@ -186,14 +223,14 @@ function simple_quick_sort($arr)
             <tr>
                 <td>Vị trí các phần tử bằng 0: </td>
                 <td>
-                    <textarea cols="20" rows="5"
+                    <textarea cols="20" rows="4"
                         readonly><?php if(isset($bangkhong)) {print implode(", ", $bangkhong); /*print join(',', $mang);*/}  ?> </textarea>
                 </td>
             </tr>
             <tr>
                 <td>Mảng đã sắp xếp: </td>
                 <td>
-                    <textarea cols="20" rows="5"
+                    <textarea cols="20" rows="4"
                         readonly><?php if(isset($mangsx)) {print implode(", ", $mangsx); /*print join(',', $mang);*/}  ?> </textarea>
                 </td>
             </tr>
@@ -204,6 +241,8 @@ function simple_quick_sort($arr)
             </tr>
         </table>
     </form>
-</body>
+    </div>
+</div>
 
-</html>
+
+<?php include('../admin/partials/footer.php'); ?>

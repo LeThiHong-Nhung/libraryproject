@@ -31,7 +31,7 @@ else{
             <form action="" method="POST" class="order">
                 <fieldset align="center" style="border: none;">
             <?php
-            $sql2="SELECT ma_sv FROM the_thu_vien WHERE ma_sv='$id' ";
+            $sql2="SELECT ma_sv FROM the_thu_vien WHERE ma_sv='$id' and active='1' ";
             $res2 = mysqli_query($conn, $sql2);
             $count2=mysqli_num_rows($res2);
             if($count2==0){

@@ -14,7 +14,7 @@
         <br>
         <!-- Button for adding admin -->
         <a href="<?php echo SITEURL; ?>admin/manage-card.php" class="btn-primary">Phiếu mượn</a>
-        <a href="<?php echo SITEURL; ?>admin/manage-card.php" class="btn-primary">Thẻ thư viện</a>
+        <a href="<?php echo SITEURL; ?>admin/the-thu-vien.php" class="btn-primary">Thẻ thư viện</a>
         <br /><br /><br />
 
         <table class="tbl-full">

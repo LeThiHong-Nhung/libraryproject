@@ -1,9 +1,21 @@
-<!DOCTYPE html>
-<head>
-    <title>Thay thế mảng</title>
-</head>
-<body style="font-size:25px">
-<?php
+<?php include('../admin/partials/menu.php') ?>
+
+<div class="main-content">
+    <div class="wrapper">
+        <h1>BÀI TẬP MẢNG, CHUỖI VÀ HÀM</h1>
+        <br /><br />
+        <br>
+        <!-- BÀI TẬP FORM, ARRAY, MYSQL -->
+        <a href="<?php echo SITEURL; ?>btarray/btarray1.php" class="btn-primary">Bài 1</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray2.php" class="btn-primary">Bài 2</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray3.php" class="btn-primary">Bài 3</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray4.php" class="btn-primary">Bài 4</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray5.php" class="btn-primary">Bài 5</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray6.php" class="btn-primary">Bài 6</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray7.php" class="btn-primary">Bài 7</a>
+
+        <br /><br /><br />
+        <?php
 function thaythe($mangso,$canthaythe,$thaythe)
 {
     foreach ($mangso as $key => &$value) {
@@ -29,7 +41,7 @@ if(isset($_POST['submit']))
 ?>
 
     <form method="post" action="" name="formthaythe">
-        <table bgcolor="" align="center">
+        <table bgcolor="" align="center" style="width: 60%;">
             <tr bgcolor="#c44569">
                 <th colspan="2">THAY THẾ</th>
             </tr>
@@ -74,5 +86,6 @@ if(isset($_POST['submit']))
             </tr>
         </table>
     </form>
-</body>
-</html>
+    </div>
+</div>
+<?php include('../admin/partials/footer.php'); ?>

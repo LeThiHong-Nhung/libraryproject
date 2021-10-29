@@ -1,9 +1,21 @@
-<!DOCTYPE html>
-<head>
-    <title>Sắp xếp mảng</title>
-</head>
-<body style="font-size:25px">
-<?php
+<?php include('../admin/partials/menu.php') ?>
+
+<div class="main-content">
+    <div class="wrapper">
+        <h1>BÀI TẬP MẢNG, CHUỖI VÀ HÀM</h1>
+        <br /><br />
+        <br>
+        <!-- BÀI TẬP FORM, ARRAY, MYSQL -->
+        <a href="<?php echo SITEURL; ?>btarray/btarray1.php" class="btn-primary">Bài 1</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray2.php" class="btn-primary">Bài 2</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray3.php" class="btn-primary">Bài 3</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray4.php" class="btn-primary">Bài 4</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray5.php" class="btn-primary">Bài 5</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray6.php" class="btn-primary">Bài 6</a>
+        <a href="<?php echo SITEURL; ?>btarray/btarray7.php" class="btn-primary">Bài 7</a>
+
+        <br /><br /><br />
+        <?php
 
 function swap(&$k, &$key) {
     $tam=$k;
@@ -38,7 +50,7 @@ if(isset($_POST['submit']))
 ?>
 
     <form action="" method="POST">
-        <table align="center" style="background-color: #63cdda;">
+        <table align="center" style="background-color: #63cdda;width: 60%;">
             <tr>
                 <th colspan="2" align="center" style="background-color: #3dc1d3;">SẮP XẾP MẢNG</th>
             </tr>
@@ -51,7 +63,7 @@ if(isset($_POST['submit']))
             <tr>
                 <td> </td>
                 <td>
-                    <input type="submit" name="submit" value="Sắp xếp tăng/giảm"><b style="color: red">(*)</b>
+                    <input style="font-size: 15px;color: darkslategrey; background-color: aquamarine;" type="submit" name="submit" value="Sắp xếp tăng/giảm"><b style="color: red">(*)</b>
                 </td>
             </tr>
             <tr style="background-color: #2bcbba;">
@@ -74,5 +86,6 @@ if(isset($_POST['submit']))
             </tr>
         </table>
     </form>
-</body>
-</html>
+    </div>
+</div>
+<?php include('../admin/partials/footer.php'); ?>

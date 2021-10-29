@@ -17,7 +17,7 @@ else{
                 <fieldset>
                     <legend>Thông tin làm thẻ</legend>
                     <div class="order-label">MSSV</div>
-                    <input type="text" name="ma_sv" placeholder="Nhập vào mã sinh viên" class="input-responsive" required>
+                    <input type="text" name="ma_sv" placeholder="Nhập vào mã sinh viên" class="input-responsive" readonly value="<?php echo $sv_id; ?>">
 
                     <div class="order-label">Hạn thẻ</div>
                     <select name="hsd" class="input-responsive">
@@ -29,6 +29,7 @@ else{
                     
                     <div class="order-label">Thời gian cấp</div>
                     <input type="date" name="thoigiancap" value="<?php $today=date('D-m-Y'); echo $today; ?>" required>
+                    <input type="hidden" value="<?php if(isset($er)) echo $er; ?>">
                     <br><br>
                     <input type="submit" name="xn" value="Xác nhận" class="btn btn-primary">
                 </fieldset>
@@ -37,8 +38,26 @@ else{
             <?php
             if(isset($_POST['xn']))
             {
-                $_SESSION['the']="<div class='success text-center'>Đã đăng kí thẻ thư viện</div>";
-                header('location:'.SITEURL);
+                $ma_sv=$_POST['ma_sv'];
+                $hsd=$_POST['hsd'];
+                $thoigiancap=$_POST['thoigiancap'];
+
+                $sql3="INSERT INTO the_thu_vien SET
+                ma_sv='$ma_sv',
+                thoigiancap='$thoigiancap',
+                hsd='$hsd',
+                active=0 
+                ";
+
+                $res3=mysqli_query($conn,$sql3);
+                if ($res3 == true) {
+                    $_SESSION['the']="<div class='success text-center'>Gửi yêu cầu làm thẻ thư viện thành công!</div>";
+                    header('location:'.SITEURL);
+                }
+                else{
+                    $_SESSION['the']="<div class='error text-center'>Gửi yêu cầu làm thẻ thư viện thất bại!</div>";
+                    header('location:'.SITEURL);
+                }
             }
             ?>
         </div>

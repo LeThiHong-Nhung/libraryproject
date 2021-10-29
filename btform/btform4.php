@@ -1,15 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Kết quả thi đại học</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
-</head>
-<body style="font-size:25px;">
-    <?php
+<?php include('../admin/partials/menu.php') ?>
+
+<div class="main-content">
+    <div class="wrapper">
+        <h1>BÀI TẬP PHP & FORM</h1>
+        <br /><br />
+        <br>
+        <!-- BÀI TẬP FORM, ARRAY, MYSQL -->
+        <a href="<?php echo SITEURL; ?>btform/btform1.php" class="btn-primary">Bài 1</a>
+        <a href="<?php echo SITEURL; ?>btform/btform2.php" class="btn-primary">Bài 2</a>
+        <a href="<?php echo SITEURL; ?>btform/btform3.php" class="btn-primary">Bài 3</a>
+        <a href="<?php echo SITEURL; ?>btform/btform4.php" class="btn-primary">Bài 4</a>
+        <a href="<?php echo SITEURL; ?>btform/btform5.php" class="btn-primary">Bài 5</a>
+        <a href="<?php echo SITEURL; ?>btform/pheptinh.php" class="btn-primary">Bài 6+7</a>
+        <a href="<?php echo SITEURL; ?>btform/btform8.html" class="btn-primary">Bài 8</a>
+
+        <br /><br /><br />
+        <?php
     if(isset($_POST['submit']))
     {       
         /*$toan = (float)$toan;
@@ -79,10 +85,10 @@
                         <input type="submit" style="background-color: #c44569; font-size: 20px;" name="submit" value="Xem kết quả">
                     </td>
                 </tr>
-                <tr>
-                    <td colspan="2"><a href="javascript:window.history.go(-1)">Quay lại</a></td>
-                </tr>
         </table>
     </form>
-</body>
-</html>
+    </div>
+</div>
+
+    
+    <?php include('../admin/partials/footer.php'); ?>

@@ -3,8 +3,8 @@
 <section class="book-search text-center">
     <div class="container">
         <form action="<?php echo SITEURL; ?>book-search.php" method="POST">
-            <input type="search" name="search" placeholder="Search for book .." required>
-            <input type="submit" name="submit" value="Search" class="btn btn-primary">
+            <input type="search" name="search" placeholder="Tìm sách ..." required>
+            <input type="submit" name="submit" value="Tìm kiếm" class="btn btn-primary">
         </form>
     </div>
 </section>
@@ -12,7 +12,7 @@
 <!-- Categories section starts here -->
 <section class="categories">
     <div class="container">
-        <h2 class="text-center">Explore Books</h2>
+        <h2 class="text-center">Khám phá sách</h2>
         <?php
         $sql = "SELECT * FROM the_loai ORDER BY ma_tl ASC";
         $res = mysqli_query($conn, $sql);

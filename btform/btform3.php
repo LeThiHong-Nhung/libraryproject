@@ -29,7 +29,7 @@
     }
     ?>
     <form action="" method="post">
-        <table bgcolor="#fad390" align="center">
+        <table bgcolor="#fad390" align="center" style="width: 60%;"> 
                 <tr>
                     <td  colspan=2 bgcolor="#f6b93b" align="center">THANH TOÁN TIỀN ĐIỆN</td>
                 </tr>

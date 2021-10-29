@@ -30,10 +30,10 @@ include('partials/menu.php') ?>
                 <tr>
                     <td>Trạng thái</td>
                     <td>
-                        <input type="radio" name="active" <?php if ($active == 0) echo "checked"; ?> value="0">Chưa duyệt
+                        <input type="radio" name="active" <?php if ($active == "No") echo "checked"; ?> value="No">Chưa duyệt
                     </td>
                     <td>
-                        <input type="radio" name="active" <?php if ($active == 1) echo "checked"; ?> value="1">Đã duyệt
+                        <input type="radio" name="active" <?php if ($active == "Yes") echo "checked"; ?> value="Yes">Đã duyệt
                     </td>
                 </tr>
                 <tr>
@@ -57,6 +57,7 @@ include('partials/menu.php') ?>
             active='$active' 
             WHERE ma_pm='$ma_pm' 
             ";
+            //echo $sql2;
 
             //thuc thi
             $res2 = mysqli_query($conn, $sql2);

@@ -46,7 +46,7 @@ include('partials/menu.php') ?>
                     echo "<td>".$hoten_sv."</td>";
                     echo "<td>".$thoigiancap."</td>";
                     echo "<td>".$hsd."</td>";
-                    if($active==0) echo "<td><div class='error'>Chưa duyệt</div></td>"; else echo "<td><div class='success'>Đã duyệt</div></td>";
+                    if($active=="No") echo "<td><div class='error'>Chưa duyệt</div></td>"; else echo "<td><div class='success'>Đã duyệt</div></td>";
                     ?>
                     <td>
                         <a href="<?php echo SITEURL; ?>admin/update-thetv.php?id=<?php echo $ma_the; ?>"><img src="<?php echo SITEURL; ?>images/edit.png" width="50px" title="Sửa thông tin thẻ"></a>

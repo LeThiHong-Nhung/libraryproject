@@ -40,7 +40,7 @@
     }
     ?>
     <form action="" method="post">
-        <table bgcolor="#f8a5c2" align="center">
+        <table bgcolor="#f8a5c2" align="center" style="width: 60%;">
                 <tr>
                     <td  colspan=2 bgcolor="#cf6a87" align="center">KẾT QUẢ THI ĐẠI HỌC</td>
                 </tr>

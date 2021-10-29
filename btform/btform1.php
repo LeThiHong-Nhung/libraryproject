@@ -26,7 +26,7 @@
     }
 ?>
     <form action="" method="post" style="font-size:25px; width: 100%;" >
-        <table bgcolor="#fad390">
+        <table bgcolor="#fad390" style="width: 60%;">
                 <tr>
                     <td  colspan=2 bgcolor="#f6b93b" align="center">TÍNH TOÁN TRÊN HÌNH CHỮ NHẬT</td>
                 </tr>

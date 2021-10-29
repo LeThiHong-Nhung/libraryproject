@@ -10,6 +10,11 @@
             echo $_SESSION['update'];
             unset($_SESSION['update']);
         }
+        if(isset($_SESSION['delete-pm']))
+        {
+            echo $_SESSION['delete-pm'];
+            unset($_SESSION['delete-pm']);
+        }
         ?>
         <br>
         <!-- Button for adding admin -->
@@ -59,10 +64,10 @@
                     <td><?php echo $ten_sach; ?></td>
                     <td><?php echo $soluong_muon; ?></td>
                     <td><?php echo $ngay_muon; ?></td>
-                    <td><?php if($active==0) echo "<div class='error'>Chưa duyệt</div>"; else echo "<div class='success'>Đã duyệt</div>"; ?></td>
+                    <td><?php if($active=="No") echo "<div class='error'>Chưa duyệt</div>"; else echo "<div class='success'>Đã duyệt</div>"; ?></td>
                     <td>
                     <a href="<?php echo SITEURL; ?>admin/update-card.php?id=<?php echo $ma_pm;?>"><img src="<?php echo SITEURL; ?>images/edit.png" width="50px" title="Đổi trạng thái phiếu mượn"></a>
-                    <a href="<?php echo SITEURL; ?>admin/delete-sv.php?id=<?php echo $ma_pm;?>"><img src="<?php echo SITEURL; ?>images/delete.png" width="50px" title="Xóa phiếu mượn"></a>
+                    <a href="<?php echo SITEURL; ?>admin/delete-pm.php?id=<?php echo $ma_pm;?>"><img src="<?php echo SITEURL; ?>images/delete.png" width="50px" title="Xóa phiếu mượn"></a>
                     </td>
                     </tr>
                     <?php

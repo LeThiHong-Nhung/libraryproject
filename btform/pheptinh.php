@@ -28,8 +28,8 @@ if(isset($_POST['submit']))
 
 
 ?>
-    <form action="ketquapheptinh.php" method="POST" name="formnhaplieu" style="border: 1px solid #84817a;">
-        <table align="center">
+    <form action="ketquapheptinh.php" method="POST" name="formnhaplieu" style="border: 1px solid #84817a;width: 60%;">
+        <table align="center" style="width: 90%;">
             <tr>
                 <td colspan="2" class="bluen"  style="text-align: center;">PHÉP TÍNH TRÊN HAI SỐ</td>
             </tr>

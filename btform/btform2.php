@@ -25,7 +25,7 @@
     }
     ?>
     <form action="" method="post" style="font-size: 25px;">
-        <table bgcolor="#fad390" align="center" class="nav-form">
+        <table bgcolor="#fad390" align="center" class="nav-form" style="width: 60%;">
                 <tr>
                     <td  colspan=2 bgcolor="#f6b93b" style="color: white;" align="center">DIỆN TÍCH VÀ CHU VI HÌNH TRÒN</td>
                 </tr>

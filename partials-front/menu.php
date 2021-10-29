@@ -7,7 +7,7 @@ include('login-check-sv.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library Website</title>
+    <title>Trang chủ</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -24,19 +24,16 @@ include('login-check-sv.php');
             <div class="menu text-right">
                 <ul>
                     <li>
-                        <a href="<?php echo SITEURL; ?>">Home</a>
+                        <a href="<?php echo SITEURL; ?>">Trang chủ</a>
                     </li>
                     <li>
-                        <a href="<?php echo SITEURL; ?>book.php">Book</a>
+                        <a href="<?php echo SITEURL; ?>book.php">Sách</a>
                     </li>
                     <li>
-                        <a href="<?php echo SITEURL; ?>categories.php">Catagories</a>
+                        <a href="<?php echo SITEURL; ?>categories.php">Thể loại</a>
                     </li>
                     <li>
                         <a href="<?php echo SITEURL; ?>logout-sv.php">Đăng xuất</a>
-                    </li>
-                    <li>
-                        <a href="<?php echo SITEURL; ?>signin-sv.php">Đăng kí</a>
                     </li>
                     <?php
                     $id=$_SESSION['user'];

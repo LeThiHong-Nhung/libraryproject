@@ -2,6 +2,10 @@
 <?php
 if (isset($_GET['sv_id'])) {
     $sv_id = $_GET['sv_id'];
+    if ($_SESSION['chua-co-the']) {
+        echo $_SESSION['chua-co-the'];
+        unset($_SESSION['chua-co-the']);
+    }
 }
 else{
     header('location:'.SITEURL);
@@ -46,7 +50,7 @@ else{
                 ma_sv='$ma_sv',
                 thoigiancap='$thoigiancap',
                 hsd='$hsd',
-                active=0 
+                active='No' 
                 ";
 
                 $res3=mysqli_query($conn,$sql3);

@@ -33,7 +33,7 @@
         </div>
         <div class="col-4 text-center">
         <?php
-            $sql3="SELECT * FROM phieu_muon WHERE active='1' ";
+            $sql3="SELECT * FROM phieu_muon WHERE active='Yes' ";
             $res3=mysqli_query($conn,$sql3);
             $count3=mysqli_num_rows($res3);
             ?>

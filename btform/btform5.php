@@ -46,7 +46,7 @@
     }
     ?>
     <form action="" method="post">
-        <table bgcolor="#33d9b2" align="center">
+        <table bgcolor="#33d9b2" align="center" style="width: 60%;">
                 <tr>
                     <td  colspan=2 bgcolor="#218c74" style="color:white" align="center">TÍNH TIỀN KARAOKE</td>
                 </tr>

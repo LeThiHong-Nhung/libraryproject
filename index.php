@@ -3,8 +3,8 @@
 <section class="book-search text-center">
     <div class="container">
         <form action="<?php echo SITEURL; ?>book-search.php" method="POST">
-            <input type="search" name="search" placeholder="Search for book .." required>
-            <input type="submit" name="submit" value="Search" class="btn btn-primary">
+            <input type="search" name="search" placeholder="Tìm sách ..." required>
+            <input type="submit" name="submit" value="Tìm kiếm" class="btn btn-primary">
         </form>
     </div>
 </section>
@@ -31,7 +31,7 @@ if(isset($_SESSION['the']))
 <!-- Categories section starts here -->
 <section class="categories">
     <div class="container">
-        <h2 class="text-center">Explore Books</h2>
+        <h2 class="text-center">Khám phá sách</h2>
         <?php
         $sql = "SELECT * FROM the_loai LIMIT 3";
         $res = mysqli_query($conn, $sql);
@@ -46,7 +46,7 @@ if(isset($_SESSION['the']))
                     <div class="box-3 float-container">
                         <?php
                         if ($tenanh == "") {
-                            echo "<div class='error'>Khong co anh</div>";
+                            echo "<div class='error'>Không có ảnh</div>";
                         } else {
                         ?>
                             <img src="<?php echo SITEURL; ?>images/category/<?php echo $tenanh; ?>" alt="Book" class="img-responsive img-curve">
@@ -59,7 +59,7 @@ if(isset($_SESSION['the']))
         <?php
             }
         } else {
-            echo "<div class='error'>Khong co the loai nao!</div>";
+            echo "<div class='error'>Không có thể loại nào!</div>";
         }
         ?>
         <div class="clearfix"></div>
@@ -70,7 +70,7 @@ if(isset($_SESSION['the']))
 <!-- Book menu section starts here -->
 <section class="book-menu">
     <div class="container">
-        <h2 class="text-center">Book menu</h2>
+        <h2 class="text-center">Danh mục sách</h2>
         <?php
         $sql = "SELECT * FROM sach LIMIT 6";
         $res = mysqli_query($conn, $sql);
@@ -122,7 +122,7 @@ if(isset($_SESSION['the']))
     </div>
 
     <p class="text-center">
-        <a href="<?php echo SITEURL; ?>book.php">See all book</a>
+        <a href="<?php echo SITEURL; ?>book.php">Tất cả sách</a>
     </p>
 </section>
 <!-- Book menu section ends here -->

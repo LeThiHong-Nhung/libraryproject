@@ -9,7 +9,6 @@
 
 <body>
     <div class="login">
-    <h1 class="text-center">Đăng kí</h1><br><br>
 
     <?php if (isset($_SESSION['signin']))
     {
@@ -17,7 +16,6 @@
         unset($_SESSION['signin']);
     }
     ?>
-    <br><br>
     <!-- Signin Form Starts Here -->
     <section class="book-search">
         <div class="container">
@@ -105,7 +103,6 @@
     </section>
     <!-- Signin Form Ends Here -->
 
-    <p class="text-center">Created by <a href="#">Lê Thị Hồng Nhung</a></p>
     </div>
 
 </body>

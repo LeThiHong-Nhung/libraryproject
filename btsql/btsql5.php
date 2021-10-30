@@ -10,11 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         img{
-            width: 50%;
-            /* height: 60px; */
+            width: 80px;
+            height: 80px;
         }
         table tr td{
-            padding: 4%;
+            padding: 1%;
             align-self: center;
         }
         th{

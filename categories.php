@@ -14,9 +14,18 @@
     <div class="container">
         <h2 class="text-center">Khám phá sách</h2>
         <?php
-        $sql = "SELECT * FROM the_loai ORDER BY ma_tl ASC";
+        //phan trang
+        $rowsPerPage = 6;
+        if (!isset($_GET['page'])) {
+            $_GET['page'] = 1;
+        }
+        $offset = ($_GET['page'] - 1) * $rowsPerPage;
+        //
+        $sql = "SELECT * FROM the_loai ORDER BY ma_tl ASC LIMIT $offset, $rowsPerPage";
         $res = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($res);
+        $maxPage = ceil($count / $rowsPerPage);
+        //
         if ($count > 0) {
             while ($row = mysqli_fetch_assoc($res)) {
                 $id = $row['ma_tl'];
@@ -46,6 +55,30 @@
         }
         ?>
         <div class="clearfix"></div>
+        <div style="text-align: center;">
+    <?php
+    $re = mysqli_query($conn, 'select * from the_loai ORDER BY ma_tl ASC');
+    $numRows = mysqli_num_rows($re);
+    $maxPage = floor($numRows/$rowsPerPage) + 1;
+    if ($_GET['page'] > 1){
+        echo "<a href=" .$_SERVER['PHP_SELF']."?page=".(1)."> << </a> ";
+        echo "<a href=" .$_SERVER['PHP_SELF']."?page=".($_GET['page']-1)."> < </a> "; //gắn thêm nút Back
+    }
+    for ($i=1 ; $i<=$maxPage ; $i++)
+    {
+        if ($i == $_GET['page'])
+        {
+            echo '<b>'.$i.'</b> '; //trang hiện tại sẽ được bôi đậm
+        }
+        else echo "<a href=" .$_SERVER['PHP_SELF']. "?page=".$i."> ".$i."</a> ";
+    }
+    if ($_GET['page'] < $maxPage) {
+        echo "<a href=" . $_SERVER['PHP_SELF'] . "?page=".($_GET['page'] + 1) . "> > </a>";  //gắn thêm nút Next
+        echo "<a href=" . $_SERVER['PHP_SELF'] . "?page=".($maxPage) . "> >> </a>";
+    }
+    ?>
+    </div>
+    <div class="clearfix"></div>
     </div>
 </section>
 <!-- Categories section ends here -->

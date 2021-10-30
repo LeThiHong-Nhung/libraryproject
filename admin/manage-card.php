@@ -33,9 +33,17 @@
                 <th>Trạng thái</th>
             </tr>
             <?php
-            $sql="SELECT * FROM phieu_muon";
+            //phan trang
+        $rowsPerPage = 6;
+        if (!isset($_GET['page'])) {
+            $_GET['page'] = 1;
+        }
+        $offset = ($_GET['page'] - 1) * $rowsPerPage;
+            $sql="SELECT * FROM phieu_muon LIMIT $offset, $rowsPerPage";
             $res= mysqli_query($conn, $sql);
             $count=mysqli_num_rows($res);
+            $maxPage = ceil($count / $rowsPerPage);
+            //
             $sn=1;
             if($count>0){
                 while($row=mysqli_fetch_assoc($res))
@@ -67,8 +75,8 @@
                     <td><?php if($active=="No") echo "<div class='error'>Chưa duyệt</div>"; else echo "<div class='success'>Đã duyệt</div>"; ?></td>
                     <td>
                     <a href="<?php echo SITEURL; ?>admin/update-card.php?id=<?php echo $ma_pm;?>"><img src="<?php echo SITEURL; ?>images/edit.png" width="50px" title="Đổi trạng thái phiếu mượn"></a>
-                    <a href="<?php echo SITEURL; ?>admin/delete-pm.php?id=<?php echo $ma_pm;?>"><img src="<?php echo SITEURL; ?>images/delete.png" width="50px" title="Xóa phiếu mượn"></a>
-                    </td>
+                    <a href="<?php echo SITEURL; ?>admin/delete-pm.php?id=<?php echo $ma_pm;?>"><img src="<?php echo SITEURL; ?>images/delete.png" width="50px" title="Xóa phiếu mượn"></a>    
+                </td>
                     </tr>
                     <?php
                 }
@@ -78,6 +86,32 @@
             }
             ?>
         </table>
+        <div class="clearfix"></div>
+
+<div style="text-align: center;">
+    <?php
+    $re = mysqli_query($conn, 'select * from phieu_muon');
+    $numRows = mysqli_num_rows($re);
+    $maxPage = floor($numRows/$rowsPerPage) + 1;
+    if ($_GET['page'] > 1){
+        echo "<a href=" .$_SERVER['PHP_SELF']."?page=".(1)."> << </a> ";
+        echo "<a href=" .$_SERVER['PHP_SELF']."?page=".($_GET['page']-1)."> < </a> "; //gắn thêm nút Back
+    }
+    for ($i=1 ; $i<=$maxPage ; $i++)
+    {
+        if ($i == $_GET['page'])
+        {
+            echo '<b>'.$i.'</b> '; //trang hiện tại sẽ được bôi đậm
+        }
+        else echo "<a href=" .$_SERVER['PHP_SELF']. "?page=".$i."> ".$i."</a> ";
+    }
+    if ($_GET['page'] < $maxPage) {
+        echo "<a href=" . $_SERVER['PHP_SELF'] . "?page=".($_GET['page'] + 1) . "> > </a>";  //gắn thêm nút Next
+        echo "<a href=" . $_SERVER['PHP_SELF'] . "?page=".($maxPage) . "> >> </a>";
+    }
+    ?>
+    </div>
+    <div class="clearfix"></div>
     </div>
 </div>
 

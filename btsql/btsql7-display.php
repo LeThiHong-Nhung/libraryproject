@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         table{
-            width: 50%;
+            width: 65%;
         }
         th{
             color: brown;
@@ -23,6 +23,10 @@
         .bb{
             text-align: right;
         }
+        table tr td{
+            padding: 1%;
+        }
+
     </style>
 </head>
 <body>

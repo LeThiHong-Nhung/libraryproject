@@ -146,4 +146,9 @@ form table tr td{
     padding: 2%;
 }
 
-/* CSS for tab homework */
+/* CSS for tab info */
+.info{
+    font-size: larger;
+    background-color: #f8a5c2;
+    color: #6D214F;
+}

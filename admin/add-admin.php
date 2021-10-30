@@ -1,4 +1,4 @@
-<?php include('partials/menu.php'); ?>
+<?php ob_start(); include('partials/menu.php'); ?>
 
 <div class="main-content">
     <div class="wrapper">
@@ -172,5 +172,5 @@ if (isset($_POST['submit'])) {
 }
 
 
-
+ob_end_flush();
 ?>

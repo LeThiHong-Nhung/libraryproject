@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         table{
-            width: 65%;
+            width: 85%;
         }
         th{
             color: brown;

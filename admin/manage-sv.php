@@ -57,6 +57,7 @@
                         $ten = $rows['hoten_sv'];
                         $diachi = $rows['diachi_sv'];
                         $ngaysinh = $rows['ngaysinh_sv'];
+                        $ngaysinh=date("d/m/Y", strtotime($ngaysinh));
                         $khoa = $rows['khoa'];
                         $gioitinh = $rows['gioitinh_sv'];
                         $email = $rows['email'];

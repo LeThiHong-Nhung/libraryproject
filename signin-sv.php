@@ -36,7 +36,7 @@
                     <input type="radio" name="gioitinh_sv" value="Nữ" class="input-responsive" required>Nữ
 
                     <div class="order-label">Ngày sinh</div>
-                    <input type="date" name="ngaysinh_sv" value="<?php $today=date('D-m-Y'); echo $today; ?>">
+                    <input type="date" name="ngaysinh_sv" value="<?php $today=date("d/m/Y"); echo $today; ?>">
                     
                     <div class="order-label">Địa chỉ</div>
                     <input type="text" name="diachi_sv" placeholder="VD: Khánh Hòa" class="input-responsive" required>

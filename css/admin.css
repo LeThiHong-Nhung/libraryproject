@@ -78,6 +78,14 @@ input[type="text"]{
     font-size: 1.15rem;
     width: 70%;
 }
+input[type="tel"]{
+    font-size: 1.15rem;
+    width: 70%;
+}
+input[type="password"]{
+    font-size: 1.15rem;
+    width: 70%;
+}
 input[type="date"]{
     font-size: 1.15rem;
     width: 70%;
@@ -140,10 +148,11 @@ form table tr td{
 
 /* CSS for login */
 .login{
-    border: 1px solid grey;
+    border: none;
     width: 35%;
     margin: 5% auto;
     padding: 2%;
+    opacity: 0.85;
 }
 
 /* CSS for tab info */

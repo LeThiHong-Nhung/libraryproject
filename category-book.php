@@ -68,7 +68,7 @@ else{
                     </div>
 
                     <div class="book-menu-desc">
-                        <h4><?php echo $tensach; ?></h4>
+                        <h4><a href="<?php echo SITEURL; ?>detail-book.php?idsach=<?php echo $idsach; ?>"><?php echo $tensach; ?></a></h4>
                         <p class="book-price"><?php echo $giasach; ?> VND</p>
                         <p class="book-detail"><?php echo $tomtat; ?></p><br>
                         <a href="<?php echo SITEURL; ?>muonsach.php?book_id=<?php echo $idsach; ?>" class="btn btn-primary">Mượn sách</a>

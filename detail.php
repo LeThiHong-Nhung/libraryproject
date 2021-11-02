@@ -11,6 +11,7 @@ if(isset($_GET['sv_id']))
     $ten=$row['hoten_sv'];
     $gioitinh = $row['gioitinh_sv'];
     $ngaysinh = $row['ngaysinh_sv'];
+    $ngaysinh=date("d/m/Y", strtotime($ngaysinh));
     $diachi= $row['diachi_sv'];
     $khoa = $row['khoa'];
     $email = $row['email'];}

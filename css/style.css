@@ -143,6 +143,11 @@ fieldset{
     background-color: white;
     border-radius: 15px;
 }
+.book-menu-box2{
+    width: 100%;
+    background-color: white;
+    border-radius: 15px;
+}
 .book-menu-img{
     width:20%;
     float: left;
@@ -173,6 +178,10 @@ fieldset{
 .order{
     width: 50%;
     margin: 0 auto;
+}
+fieldset{
+    background-color: #82ccdd;
+    opacity: 0.85;
 }
 input[type="radio"]{
     width: 10%;

@@ -11,7 +11,7 @@
 <body>
 <section class="book-search">
     <div class="container">
-    <div class="login">
+    <div class="login"  style="background-color: #f8a5c2; border-radius: 2%;">
     <h1 class="text-center">Login</h1><br><br>
 
     <?php if (isset($_SESSION['login']))

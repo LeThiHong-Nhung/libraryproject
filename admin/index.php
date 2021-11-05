@@ -1,4 +1,4 @@
-<?php include('partials/menu.php') ?>
+<?php include('partials/menu.php'); ?>
 <!-- Main content section starts -->
 <div class="menu main-content">
     <div class="wrapper">
@@ -19,7 +19,9 @@
             ?>
             <h1><?php echo $count; ?></h1>
             <br />
-            Thể loại
+            Thể loại<br><br>
+            <a class="btn btn-secondary" href="<?php echo SITEURL; ?>admin/exporttl.php">Xuất excel</a>
+
         </div>
         <div class="col-4 text-center">
         <?php
@@ -29,7 +31,9 @@
             ?>
             <h1><?php echo $count2; ?></h1>
             <br />
-            Sách
+            Sách<br><br>
+            <a class="btn btn-secondary" href="<?php echo SITEURL; ?>admin/exportsach.php">Xuất excel</a>
+
         </div>
         <div class="col-4 text-center">
         <?php
@@ -39,7 +43,8 @@
             ?>
             <h1><?php echo $count3; ?></h1>
             <br />
-            Tổng lượt mượn
+            Tổng lượt mượn<br><br>
+            <a class="btn btn-secondary" href="<?php echo SITEURL; ?>admin/export.php">Xuất excel</a>
         </div>
         <div class="col-4 text-center">
         <?php
@@ -50,7 +55,9 @@
             ?>
             <h1><?php echo $count4; ?></h1>
             <br />
-            Tổng sinh viên
+            Tổng sinh viên<br><br>
+            <a class="btn btn-secondary" href="<?php echo SITEURL; ?>admin/exportsv.php">Xuất excel</a>
+
         </div>
         <div class="clearfix"></div>
     </div>

@@ -19,7 +19,14 @@
         <br /><br />
         <!-- Button for adding admin -->
         <a href="<?php echo SITEURL; ?>admin/add-sv.php" class="btn-primary">Thêm sinh viên</a>
-        <br /><br /><br />
+        <br><br>
+        <form action="" method="POST">
+            <label>Tìm kiếm sinh viên: </label>
+            <input type="search" name="search" value="">
+            <input type="submit" name="tim" value="Tìm kiếm">
+        </form>
+
+        <br /><br />
 
         <table class="tbl-full">
             <tr>
@@ -41,9 +48,17 @@
             //tao bien dem
             $sn = 1;
             //lay du lieu tu bang nhan_vien
+            if(isset($_POST['tim']))
+            {
+                $search=$_POST['search'];
+                $sql="SELECT * FROM sinh_vien WHERE ma_sv LIKE '%$search%' OR hoten_sv LIKE '%$search%' OR gioitinh_sv LIKE '%$search%' OR diachi_sv LIKE '%$search%' OR khoa LIKE '%$search%' OR email LIKE '%$search%' LIMIT $offset, $rowsPerPage ";
+                $res=mysqli_query($conn, $sql);
+                //
+            }
+            else{
             $sql = "SELECT * from sinh_vien LIMIT $offset, $rowsPerPage";
             //thuc thi cau truy van
-            $res = mysqli_query($conn, $sql);
+            $res = mysqli_query($conn, $sql);}
             //kiem tra ket qua cau truy van
             if ($res == true) {
                 //dem so ban ghi
@@ -81,7 +96,7 @@
 
             <?php
 
-
+                    
                     }
                 }
             }

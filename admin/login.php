@@ -1,4 +1,5 @@
-<?php include('../config/constants.php'); ?>
+<?php include('../config/constants.php');
+?>
 
 <!DOCTYPE html>
 
@@ -32,8 +33,10 @@
     <input type="email" name="username" placeholder="Nhập email của bạn"><br><br>
     Mật khẩu:<br>
     <input type="password" name="password" placeholder="Nhập mật khẩu"><br><br>
-
+    <input type="checkbox" name="remember" value="1">
+    <label>Duy trì đăng nhập</label><br><br>
     <input type="submit" name="submit" value="Đăng nhập" class="btn btn-primary"><br><br>
+   
     </form>
     <!-- Login Form Ends Here -->
 
@@ -49,12 +52,13 @@
 if(isset($_POST['submit']))
 {
     //lay du lieu tu form dang nhap
-    $username = mysqli_real_escape_string($conn,$_POST['username']);
+    $usernv = mysqli_real_escape_string($conn,$_POST['username']);
     $raw_pass=md5($_POST['password']);
-    $password = mysqli_real_escape_string($conn,$raw_pass);
+    $pass = mysqli_real_escape_string($conn,$raw_pass);
+    $check=((isset($_POST['remember'])!=0)?1:"");
 
     //kiem tra co ton tai admin k
-    $sql = "SELECT * FROM nhan_vien WHERE email_nv='$username' AND pwd='$password' ";
+    $sql = "SELECT * FROM nhan_vien WHERE email_nv='$usernv' AND pwd='$pass' ";
 
     //thuc thi cau truy van
     $res = mysqli_query($conn, $sql);
@@ -63,14 +67,19 @@ if(isset($_POST['submit']))
 
     if($count == 1) {
         //dang nhap thanh cong
-        $_SESSION['login']="<div class='success'>Login successfully</div>";
-        $_SESSION['user']=$username;//kiem tra neu user da dang nhap hoac neu khong logout se unset no
+        $_SESSION['login']="<div class='success'>Đăng nhập thành công!</div>";
+        $_SESSION['user']=$usernv;//kiem tra neu user da dang nhap hoac neu khong logout se unset no
+        //
+        //session_destroy();
+        if($check==1){
+            setcookie($cookie_admin, 'usernv='.$usernv.'&passnv='.$pass, time()+$cookie_time);
+        }
 
         header("location:".SITEURL."admin/");
     }
     else{
         //dang nhap that bai
-        $_SESSION['login']="<div class='error text-center'>Login failed, password or username does not match</div>";
+        $_SESSION['login']="<div class='error text-center'>Đăng nhập thất bại, email hoặc mật khẩu không khớp</div>";
         header("location:".SITEURL."admin/login.php");
     }
 }

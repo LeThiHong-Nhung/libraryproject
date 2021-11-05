@@ -127,7 +127,7 @@ if(isset($_POST['submit']))
     if($count == 1) {
         //dang nhap thanh cong
         $_SESSION['login']="<div class='success text-center'>Đăng nhập thành công!</div>";
-        $_SESSION['user']=$ma_sv;//kiem tra neu user da dang nhap hoac neu khong logout se unset no
+        $_SESSION['usersv']=$ma_sv;//kiem tra neu user da dang nhap hoac neu khong logout se unset no
 
         header("location:".SITEURL);
     }

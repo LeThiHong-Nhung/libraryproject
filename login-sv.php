@@ -31,7 +31,8 @@
                         <input type="text" name="ma_sv" class="input-responsive" placeholder="VD: 61234567"><br><br>
                         <div class="order-label">Mật khẩu:</div>
                         <input type="password" name="pwd_sv" class="input-responsive" placeholder="Nhập mật khẩu"><br><br>
-
+                        <input type="checkbox" name="remember" value="1">
+                        <label>Duy trì đăng nhập</label><br><br>
                         <input type="submit" name="submit" value="Đăng nhập" class="btn btn-primary"><br><br>
                     </fieldset>
                 </form>
@@ -51,6 +52,7 @@ if (isset($_POST['submit'])) {
     $ma_sv = mysqli_real_escape_string($conn, $_POST['ma_sv']);
     $raw_pwd_sv = md5($_POST['pwd_sv']);
     $pwd_sv = mysqli_real_escape_string($conn, $raw_pwd_sv);
+    $check=((isset($_POST['remember'])!=0)?1:"");
 
     //kiem tra co ton tai sinh vien k
     $sql = "SELECT * FROM sinh_vien WHERE ma_sv='$ma_sv' AND pwd_sv='$pwd_sv' ";
@@ -63,13 +65,16 @@ if (isset($_POST['submit'])) {
     if ($count == 1) {
         //dang nhap thanh cong
         $_SESSION['login'] = "<div class='success text-center'>Đăng nhập thành công!</div>";
-        $_SESSION['user'] = $ma_sv; //kiem tra neu user da dang nhap hoac neu khong logout se unset no
+        $_SESSION['usersv'] = $ma_sv; //kiem tra neu user da dang nhap hoac neu khong logout se unset no
 
-        header("location:" . SITEURL);
+        if($check==1){
+            setcookie($cookie_user, 'ma_sv='.$ma_sv.'&pwd_sv='.$pwd_sv, time()+$cookie_time);
+        }
+        header("location:".SITEURL);
     } else {
         //dang nhap that bai
         $_SESSION['login'] = "<div class='error text-center'>Đăng nhập thất bại, MSSV hoặc mật khẩu sai!</div>";
-        header("location:" . SITEURL . "login-sv.php");
+        header("location:".SITEURL."login-sv.php");
     }
 }
 ?>

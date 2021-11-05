@@ -3,7 +3,7 @@
 <div class="main-content">
     <div class="wrapper">
         <h1>QUẢN LÍ MƯỢN TRẢ SÁCH</h1>
-        <br /><br />
+        <br />
         <?php
         if(isset($_SESSION['update']))
         {
@@ -15,12 +15,24 @@
             echo $_SESSION['delete-pm'];
             unset($_SESSION['delete-pm']);
         }
+        if(isset($_SESSION['tra']))
+        {
+            echo $_SESSION['tra'];
+            unset($_SESSION['tra']);
+        }
         ?>
         <br>
         <!-- Button for adding admin -->
         <a href="<?php echo SITEURL; ?>admin/manage-card.php" class="btn-primary">Phiếu mượn</a>
         <a href="<?php echo SITEURL; ?>admin/the-thu-vien.php" class="btn-primary">Thẻ thư viện</a>
-        <br /><br /><br />
+        <a href="<?php echo SITEURL; ?>admin/trasach.php" class="btn-primary" title="Xác nhận trả sách">Trả sách</a>
+        <br><br>
+        <form action="" method="POST">
+            <label>Tìm kiếm phiếu mượn: </label>
+            <input type="search" name="search" value="">
+            <input type="submit" name="tim" value="Tìm kiếm">
+        </form>
+        <br /><br />
 
         <table class="tbl-full">
             <tr>
@@ -29,7 +41,6 @@
                 <th>MSSV</th>
                 <th>Tên sách</th>
                 <th>Số lượng</th>
-                <th>Ngày mượn</th>
                 <th>Trạng thái</th>
             </tr>
             <?php
@@ -39,8 +50,15 @@
             $_GET['page'] = 1;
         }
         $offset = ($_GET['page'] - 1) * $rowsPerPage;
+        if (isset($_POST['tim'])) {
+            $search = $_POST['search'];
+            $sql = "SELECT * FROM phieu_muon join sinh_vien on phieu_muon.ma_sv=sinh_vien.ma_sv join sach on phieu_muon.ma_sach=sach.ma_sach WHERE hoten_sv LIKE '%$search%' OR ten_sach LIKE '%$search%'  LIMIT $offset, $rowsPerPage ";
+            $res = mysqli_query($conn, $sql);
+            //
+        }
+        else{
             $sql="SELECT * FROM phieu_muon LIMIT $offset, $rowsPerPage";
-            $res= mysqli_query($conn, $sql);
+            $res= mysqli_query($conn, $sql);}
             $count=mysqli_num_rows($res);
             $maxPage = ceil($count / $rowsPerPage);
             //
@@ -71,7 +89,6 @@
                     <td><?php echo $ma_sv; ?></td>
                     <td><?php echo $ten_sach; ?></td>
                     <td><?php echo $soluong_muon; ?></td>
-                    <td><?php echo $ngay_muon; ?></td>
                     <td><?php if($active=="No") echo "<div class='error'>Chưa duyệt</div>"; else echo "<div class='success'>Đã duyệt</div>"; ?></td>
                     <td>
                     <a href="<?php echo SITEURL; ?>admin/update-card.php?id=<?php echo $ma_pm;?>"><img src="<?php echo SITEURL; ?>images/edit.png" width="50px" title="Đổi trạng thái phiếu mượn"></a>

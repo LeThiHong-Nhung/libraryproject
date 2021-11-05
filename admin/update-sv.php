@@ -113,7 +113,7 @@ if(isset($_POST['submit']))
     ";
     //thuc thi cau truy van
     $res = mysqli_query($conn, $sql);
-    var_dump($sql);
+    //var_dump($sql);
 
     //kiem tra ket qua update
     if($res == true)

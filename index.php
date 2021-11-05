@@ -26,6 +26,11 @@ if(isset($_SESSION['the']))
     echo $_SESSION['the'];
     unset($_SESSION['the']);
 }
+if(isset($_SESSION['update-sv']))
+{
+    echo $_SESSION['update-sv'];
+    unset($_SESSION['update-sv']);
+}
 ?>
 
 <!-- Categories section starts here -->

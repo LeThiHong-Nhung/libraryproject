@@ -27,6 +27,18 @@ else{
 <section class="book-search">
         <div class="container">
             
+        <?php
+        if(isset($_SESSION['change-pwd']))
+        {
+            echo  $_SESSION['change-pwd'];
+            unset($_SESSION['change-pwd']);
+        }
+        if(isset($_SESSION['pwd-not-match']))
+        {
+            echo  $_SESSION['pwd-not-match'];
+            unset($_SESSION['pwd-not-match']);
+        }
+        ?>
             <h2 class="text-center text-white">Thông tin sinh viên</h2>
             
             <form action="" method="POST" class="order">
@@ -71,12 +83,23 @@ else{
 
                     <br><br>
                     <input type="submit" name="submit" value="Thoát" class="btn btn-primary">
+                    <input type="submit" name="update" value="Chỉnh sửa" class="btn btn-primary">
+                    <input type="submit" name="changepwd" value="Đổi mật khẩu" class="btn btn-primary">
+
                 </fieldset>
             </form>
             <?php
             if(isset($_POST['submit']))
             {
                 header('location:'.SITEURL);
+            }
+            if(isset($_POST['update']))
+            {
+                header('location:'.SITEURL.'update-sv-sv.php');
+            }
+            if(isset($_POST['changepwd']))
+            {
+                header('location:'.SITEURL.'changepwd-sv.php?id='.$id);
             }
             ?>
         </div>

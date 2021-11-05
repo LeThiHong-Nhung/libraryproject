@@ -44,8 +44,8 @@
                 <tr>
                     <td>Giới tính</td>
                     <td>
-                        <input type="radio" name="gioitinh_sv" value="0">Nam
-                        <input type="radio" name="gioitinh_sv" value="1">Nữ
+                        <input type="radio" name="gioitinh_sv" value="Nam">Nam
+                        <input type="radio" name="gioitinh_sv" value="Nữ">Nữ
                     </td>
                 </tr>
                 <tr>

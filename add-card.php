@@ -2,10 +2,6 @@
 <?php
 if (isset($_GET['sv_id'])) {
     $sv_id = $_GET['sv_id'];
-    if ($_SESSION['chua-co-the']) {
-        echo $_SESSION['chua-co-the'];
-        unset($_SESSION['chua-co-the']);
-    }
 }
 else{
     header('location:'.SITEURL);
@@ -19,7 +15,7 @@ else{
 
             <form action="" method="POST" class="order">   
                 <fieldset>
-                    <legend>Thông tin làm thẻ</legend>
+                    <!-- <legend>Thông tin làm thẻ</legend> -->
                     <div class="order-label">MSSV</div>
                     <input type="text" name="ma_sv" placeholder="Nhập vào mã sinh viên" class="input-responsive" readonly value="<?php echo $sv_id; ?>">
 

@@ -36,10 +36,13 @@ include('login-check-sv.php');
                         <a href="<?php echo SITEURL; ?>logout-sv.php">Đăng xuất</a>
                     </li>
                     <?php
-                    $id=$_SESSION['user'];
+                    $id=$_SESSION['usersv'];
                     ?>
                     <li>
-                        <a href="<?php echo SITEURL; ?>detail.php?sv_id=<?php echo $id; ?>"><img src="images/user.png" title="Xem chi tiết thông tin sinh viên" width="4%" height="auto"></a>
+                        <a href="<?php echo SITEURL; ?>detail.php?sv_id=<?php echo $id; ?>"><img src="images/girl.png" title="Xem chi tiết thông tin sinh viên" width="4%" height="auto"></a>
+                    </li>
+                    <li>
+                        <a href="<?php echo SITEURL; ?>phieumuon.php?sv_id=<?php echo $id; ?>"><img src="images/backpack.png" title="Xem chi tiết phiếu mượn" width="4%" height="auto"></a>
                     </li>
                 </ul>
             </div>

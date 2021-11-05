@@ -10,19 +10,19 @@
                 <tr>
                     <td>Mật khẩu hiện tại</td>
                     <td>
-                        <input type="password" name="current_password" value="<?php if (isset($ten)) echo $ten; ?>" placeholder="Điền mật khẩu hiện tại">
+                        <input type="password" name="current_password" value="<?php if (isset($current_password)) echo $current_password; ?>" placeholder="Điền mật khẩu hiện tại">
                     </td>
                 </tr>
                 <tr>
                     <td>Mật khẩu mới</td>
                     <td>
-                        <input type="password" name="new_password" value="<?php if (isset($diachi)) echo $diachi; ?>" placeholder="Điền mật khẩu mới">
+                        <input type="password" name="new_password" value="<?php if (isset($new_password)) echo $new_password; ?>" placeholder="Điền mật khẩu mới">
                     </td>
                 </tr>
                 <tr>
                     <td>Xác nhận lại mật khẩu</td>
                     <td>
-                        <input type="password" name="confirm_password" value="<?php if (isset($diachi)) echo $diachi; ?>" placeholder="Xác nhận lại mật khẩu mới">
+                        <input type="password" name="confirm_password" value="<?php if (isset($confirm_password)) echo $confirm_password; ?>" placeholder="Xác nhận lại mật khẩu mới">
                     </td>
                 </tr>
                 <tr>

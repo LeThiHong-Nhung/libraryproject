@@ -3,8 +3,7 @@
 <!-- Main content section starts -->
 <div class="menu main-content">
     <div class="wrapper">
-        <h1>Manage Admin</h1>
-        <br />
+        <h1>QUẢN LÍ THỦ THƯ</h1>
 
         <?php if (isset($_SESSION['add'])) {
             echo $_SESSION['add']; //hien thi thong bao
@@ -40,7 +39,7 @@
             unset($_SESSION['failed-remove']);
         }
         ?>
-        <br><br><br>
+        <br><br>
         <!-- Button for adding admin -->
         <a href="add-admin.php" class="btn-primary">THÊM THỦ THƯ</a>
         <br /><br /><br />

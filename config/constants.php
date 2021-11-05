@@ -6,6 +6,12 @@ $hostname = "localhost";
 $username = "root";
 $password = "";
 $dbname = "quan_li_thu_vien";
+
+//cookies
+$cookie_admin='siteAuth';
+$cookie_user='siteAuth';
+$cookie_time=(3600 * 24); // 1 ngay
+
 $conn = new mysqli($hostname, $username, $password, $dbname);
 #mysqli_set_charset($conn,'UTF8');
 if ($conn->connect_error) {

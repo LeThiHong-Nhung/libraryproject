@@ -36,7 +36,7 @@ if (isset($_GET['sv_id'])) {
             unset($_SESSION['muonsach']);
         }
         ?>
-        <h2 class="text-center text-white">Danh sách mượn</h2>
+        <h2 class="text-white" style="margin: 1%;">Danh sách mượn</h2>
         <form action="" method="POST" class="order" style="width: 100%;">
         <?php
         $sql = "SELECT * FROM phieu_muon WHERE ma_sv='$idsv' GROUP BY ma_sach ";

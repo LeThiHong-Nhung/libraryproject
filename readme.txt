@@ -1,3 +1,5 @@
+Cơ sở dữ liệu: quan_li_thu_vien
+
 tài khoản admin:
 email: hongnhung14421@gmail.com
 mk: 1234

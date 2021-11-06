@@ -19,9 +19,19 @@
     if(isset($_POST['submit']))
     {       
         $bankinh = $_POST['bankinh'];
-        $bankinh = $bankinh+0;
-        $dientich = $bankinh*$bankinh* (float) 3.14;
-        $chuvi = $bankinh*2* (float)3.14;
+        if(is_numeric($bankinh))
+        {
+            $bankinh = $bankinh+0;
+            $dientich = $bankinh*$bankinh* (float) 3.14;
+            $chuvi = $bankinh*2* (float)3.14;
+        }
+        else{
+            $bankinh="Vui long nhap so";
+        }
+    }
+    if(isset($_POST['reset']))
+    {
+        $bankinh=$dientich=$chuvi="";
     }
     ?>
     <form action="" method="post" style="font-size: 25px;">
@@ -50,6 +60,7 @@
                 <tr align="center">
                     <td colspan="2">
                         <input type="submit" style="background-color: #b71540; font-size: 20px;" name="submit" value="Tính">
+                        <input type="submit" style="background-color: #b71540; font-size: 20px;" name="reset" value="Reset">
                     </td>
                 </tr>
         </table>

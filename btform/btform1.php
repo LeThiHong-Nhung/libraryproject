@@ -19,10 +19,21 @@
     {       
         $rong = $_POST['rong'];
         $dai = $_POST['dai'];
-        $rong=$rong+0;
-        $dai=$dai+0;
-        $dientich = $rong * $dai;
-        $chuvi = ($dai + $rong)*2;
+        if(is_numeric($dai) && is_numeric($rong))
+        {
+            $rong=$rong+0;
+            $dai=$dai+0;
+            $dientich = $rong * $dai;
+            $chuvi = ($dai + $rong)*2;
+        }
+        else{
+            $dai="Vui long nhap so";
+            $rong="Vui long nhap so";
+        }
+    }
+    if(isset($_POST['reset']))
+    {
+        $rong=$dai=$chuvi=$dientich="";
     }
 ?>
     <form action="" method="post" style="font-size:25px; width: 100%;" >
@@ -58,6 +69,8 @@
                 <tr align="center">
                     <td colspan="2">
                         <input type="submit" style="background-color: #38ada9; color: white; font-size:20px" name="submit"  value="Tính">
+                        <input type="submit" style="background-color: #38ada9; color: white; font-size:20px" name="reset"  value="Reset">
+
                     </td>
                 </tr>
         </table>
